@@ -1,0 +1,23 @@
+= API Docs
+:sectnums:
+:doctype: book
+:icons: font
+:toc: left
+:toclevels: 2
+:toc-title: 목차
+:source-highlighter: highlightjs
+
+***
+== 회원관리
+=== 로그인
+==== Request
+==== Response
+
+=== 회원가입
+==== Request
+==== Response
+
+== 추천픽 기능
+=== 추천픽 조회[GET]
+==== Request
+==== Response
