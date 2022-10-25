@@ -53,29 +53,29 @@ public class RecommendPickApiTests {
 
         //todo dto factory 전략 사용
         final RecommendPickDto recommendPickDto1 = RecommendPickDto.builder()
-                .recommendChamp("리산드라")
+                .recommendChamp("Lissandra")
                 .recommendRank("78")
                 .ChampTier("1")
                 .build();
         final RecommendPickDto recommendPickDto2 = RecommendPickDto.builder()
-                .recommendChamp("아리")
+                .recommendChamp("Ahri")
                 .recommendRank("68")
                 .ChampTier("2")
                 .build();
         final RecommendPickDto recommendPickDto3 = RecommendPickDto.builder()
-                .recommendChamp("사일러스")
+                .recommendChamp("Sylas")
                 .recommendRank("56")
                 .ChampTier("1")
                 .build();
         final ProgamerPick progamerPick1 = ProgamerPick.builder()
-                .proName("페이커")
+                .proName("Faker")
                 .proNickname("hide on bush")
-                .championName("사일러스")
+                .championName("Sylas")
                 .build();
         final ProgamerPick progamerPick2 = ProgamerPick.builder()
-                .proName("쵸비")
-                .proNickname("Gen.G chovy")
-                .championName("아지르")
+                .proName("Chovy")
+                .proNickname("Gen.G Chovy")
+                .championName("Azir")
                 .build();
 
         final RecommendPickResponseDto recommendPickResponseDto = RecommendPickResponseDto.builder()
@@ -86,9 +86,9 @@ public class RecommendPickApiTests {
 
         final String ver = "156ver";
         final String line = "mid";
-        final String emLineChamp = "빅토르";
-        final String teamChamp = "세주아니,카밀";
-        final String emTeamChamp = "아펠리오스,리신";
+        final String emLineChamp = "Viktor";
+        final String teamChamp = "Sejuani,Camille";
+        final String emTeamChamp = "Aphelios,LeeSin";
 
         return Stream.of(
                 DynamicTest.dynamicTest("밴픽 추천 리스트를 조회한다.",
