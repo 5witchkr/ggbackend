@@ -87,8 +87,9 @@ public class RecommendPickApiTests {
         final String ver = "156ver";
         final String line = "mid";
         final String emLineChamp = "Viktor";
-        final String teamChamp = "Sejuani,Camille";
-        final String emTeamChamp = "Aphelios,LeeSin";
+        final String teamChamp = "Sejuani_Camille";
+        final String emTeamChamp = "Aphelios_LeeSin";
+        final String ban = "Amumu_Bard_Annie_Akali_Aatrox_Ezreal";
 
         return Stream.of(
                 DynamicTest.dynamicTest("밴픽 추천 리스트를 조회한다.",
@@ -96,10 +97,12 @@ public class RecommendPickApiTests {
                     given(recommendPickFacade.getRecommend(Mockito.anyString(),
                             Mockito.anyString(),
                             Mockito.anyString(),
+                            Mockito.anyString(),
                             Mockito.anyString())).willReturn(recommendPickResponseDto);
                     ResultActions actions = mockMvc.perform(
                             get("/api/{ver}", ver)
                                     .param("line", line)
+                                    .param("ban", ban)
                                     .param("emLineChamp", emLineChamp)
                                     .param("teamChamp", teamChamp)
                                     .param("emTeamChamp",emTeamChamp)
@@ -116,6 +119,7 @@ public class RecommendPickApiTests {
                                     ),
                                     requestParameters(
                                             parameterWithName("line").description("선택라인 (필수입력)"),
+                                            parameterWithName("ban").description("밴 챔피언 (필수입력)"),
                                             parameterWithName("emLineChamp").description("상대라이너 챔피언 (선택입력)"),
                                             parameterWithName("teamChamp").description("아군 챔피언 (선택입력)"),
                                             parameterWithName("emTeamChamp").description("적군 챔피언 (선택입력)")
@@ -124,7 +128,7 @@ public class RecommendPickApiTests {
                                             fieldWithPath("position").type(JsonFieldType.STRING).description("선택 포지션"),
                                             fieldWithPath("recommendPickList").type(JsonFieldType.ARRAY).description("추천 리스트"),
                                             fieldWithPath("recommendPickList[].recommendChamp").type(JsonFieldType.STRING).description("추천 챔피언"),
-                                            fieldWithPath("recommendPickList[].recommendRank").type(JsonFieldType.STRING).description("추천점"),
+                                            fieldWithPath("recommendPickList[].recommendRank").type(JsonFieldType.STRING).description("추천점수"),
                                             fieldWithPath("recommendPickList[].champTier").type(JsonFieldType.STRING).description("챔피언 티어"),
                                             fieldWithPath("progamerPickList").type(JsonFieldType.ARRAY).description("프로게이머 픽"),
                                             fieldWithPath("progamerPickList[].proName").type(JsonFieldType.STRING).description("프로게이머 이름"),

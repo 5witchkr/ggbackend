@@ -16,7 +16,7 @@ public class RecommendPickApi {
 
     @GetMapping("/{ver}")
     public ResponseEntity getPick(@PathVariable String ver,
-                                  @RequestParam String line, String emLineChamp, String teamChamp, String emTeamChamp) {
-        return new ResponseEntity(recommendPickFacade.getRecommend(line, emLineChamp, teamChamp, emTeamChamp), HttpStatus.OK);
+                                  @RequestParam String line, String ban, String emLineChamp, String teamChamp, String emTeamChamp) {
+        return new ResponseEntity(recommendPickFacade.getRecommend(line, ban, emLineChamp, teamChamp, emTeamChamp), HttpStatus.OK);
     }
 }
