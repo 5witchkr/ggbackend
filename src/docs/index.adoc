@@ -20,4 +20,21 @@
 == 추천픽 기능
 === 추천픽 조회[GET]
 ==== Request
+.curl-request
+include::{snippets}/get-recommend/curl-request.adoc[]
+.httpie-request
+include::{snippets}/get-recommend/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-recommend/http-request.adoc[]
+.path-parameters
+include::{snippets}/get-recommend/path-parameters.adoc[]
+.request-parameters
+include::{snippets}/get-recommend/request-parameters.adoc[]
+
 ==== Response
+.http-response
+include::{snippets}/get-recommend/http-response.adoc[]
+.response-body
+include::{snippets}/get-recommend/response-body.adoc[]
+.response-field
+include::{snippets}/get-recommend/response-fields.adoc[]
