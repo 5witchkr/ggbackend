@@ -13,5 +13,5 @@ import java.util.List;
 public class RecommendPickResponseDto {
     private String position;
     private List<RecommendPickDto> recommendPickList;
-    private List<ProgamerPick> progamerPickList;
+    private List<ProgamerPickDto> progamerPickList;
 }

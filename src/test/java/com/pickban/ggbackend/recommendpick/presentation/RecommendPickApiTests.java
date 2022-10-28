@@ -3,13 +3,14 @@ package com.pickban.ggbackend.recommendpick.presentation;
 
 import com.google.gson.Gson;
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
-import com.pickban.ggbackend.recommendpick.dto.ProgamerPick;
-import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickResponseDto;
+import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
+import com.pickban.ggbackend.recommendpick.utill.RecommendDtoFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 
 import org.junit.jupiter.api.TestFactory;
+import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -21,7 +22,6 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static com.pickban.ggbackend.ApiDocumentUtils.getRequestPreProcessor;
@@ -47,49 +47,23 @@ public class RecommendPickApiTests {
     @MockBean
     private RecommendPickFacade recommendPickFacade;
 
+    @InjectMocks
+    private RecommendDtoFactory recommendDtoFactory;
+
+
     @DisplayName("밴픽 추천 리스트 Presentation Layer")
     @TestFactory
     Stream<DynamicTest> dynamicTests(){
 
-        //todo dto factory 전략 사용
-        final RecommendPickDto recommendPickDto1 = RecommendPickDto.builder()
-                .recommendChamp("Lissandra")
-                .recommendRank("78")
-                .ChampTier("1")
-                .build();
-        final RecommendPickDto recommendPickDto2 = RecommendPickDto.builder()
-                .recommendChamp("Ahri")
-                .recommendRank("68")
-                .ChampTier("2")
-                .build();
-        final RecommendPickDto recommendPickDto3 = RecommendPickDto.builder()
-                .recommendChamp("Sylas")
-                .recommendRank("56")
-                .ChampTier("1")
-                .build();
-        final ProgamerPick progamerPick1 = ProgamerPick.builder()
-                .proName("Faker")
-                .proNickname("hide on bush")
-                .championName("Sylas")
-                .build();
-        final ProgamerPick progamerPick2 = ProgamerPick.builder()
-                .proName("Chovy")
-                .proNickname("Gen.G Chovy")
-                .championName("Azir")
-                .build();
+        final RecommendPickResponseDto recommendPickResponseDto =
+                recommendDtoFactory.createRecommendPickResponseDtoMid();
 
-        final RecommendPickResponseDto recommendPickResponseDto = RecommendPickResponseDto.builder()
-                .recommendPickList(List.of(recommendPickDto1, recommendPickDto2, recommendPickDto3))
-                .progamerPickList(List.of(progamerPick1, progamerPick2))
-                .position("mid")
-                .build();
-
-        final String ver = "156ver";
-        final String line = "mid";
-        final String emLineChamp = "Viktor";
-        final String teamChamp = "Sejuani_Camille";
-        final String emTeamChamp = "Aphelios_LeeSin";
-        final String ban = "Amumu_Bard_Annie_Akali_Aatrox_Ezreal";
+        final String ver = ApiParamEnum.VER.get();
+        final String line = ApiParamEnum.LINE.get();
+        final String emLineChamp = ApiParamEnum.EMLINECHAMP.get();
+        final String teamChamp = ApiParamEnum.TEAMCHAMP.get();
+        final String emTeamChamp = ApiParamEnum.EMTEAMCHAMP.get();
+        final String ban = ApiParamEnum.BAN.get();
 
         return Stream.of(
                 DynamicTest.dynamicTest("밴픽 추천 리스트를 조회한다.",

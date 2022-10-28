@@ -8,8 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProgamerPick {
-    private String proName;
-    private String proNickname;
+public class ChampionResponseDto {
     private String championName;
+
+    //todo refactor string to enum
+    private String championTier;
 }
