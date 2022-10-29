@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class RecommendPickResponseDto {
-    private String position;
     private List<RecommendPickDto> recommendPickList;
     private List<ProgamerPickDto> progamerPickList;
 }

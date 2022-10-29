@@ -58,10 +58,11 @@ public class RecommendPickApiTests {
         final RecommendPickResponseDto recommendPickResponseDto =
                 recommendDtoFactory.createRecommendPickResponseDtoMid();
 
+        final String team = ApiParamEnum.TEAM.get();
         final String line = ApiParamEnum.LINE.get();
-        final String emLineChamp = ApiParamEnum.EMLINECHAMP.get();
+        final String emLine = ApiParamEnum.EMLINE.get();
         final String teamChamp = ApiParamEnum.TEAMCHAMP.get();
-        final String emTeamChamp = ApiParamEnum.EMTEAMCHAMP.get();
+        final String emChamp = ApiParamEnum.EMCHAMP.get();
         final String ban = ApiParamEnum.BAN.get();
 
         return Stream.of(
@@ -77,9 +78,9 @@ public class RecommendPickApiTests {
                                     .param("team", team)
                                     .param("line", line)
                                     .param("ban", ban)
-                                    .param("emLine", emLineChamp)
+                                    .param("emLine", emLine)
                                     .param("teamChamp", teamChamp)
-                                    .param("emChamp",emTeamChamp)
+                                    .param("emChamp",emChamp)
                                     .accept(MediaType.APPLICATION_JSON)
                                     .contentType(MediaType.APPLICATION_JSON)
                             );

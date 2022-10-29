@@ -11,5 +11,5 @@ import lombok.*;
 public class ProgamerPickDto {
     private String proName;
     private String proNickname;
-    private String championName;
+    private RecommendPickDto recommendPickDto;
 }

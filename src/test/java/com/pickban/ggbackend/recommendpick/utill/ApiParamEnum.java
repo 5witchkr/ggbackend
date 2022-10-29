@@ -1,11 +1,12 @@
 package com.pickban.ggbackend.recommendpick.utill;
 
 public enum ApiParamEnum {
-    VER("156ver"),
+
+    TEAM("B"),
     LINE("mid"),
-    EMLINECHAMP("Viktor"),
+    EMLINE("Viktor"),
     TEAMCHAMP("Sejuani_Camille"),
-    EMTEAMCHAMP("Aphelios_LeeSin"),
+    EMCHAMP("Aphelios_LeeSin"),
     BAN("Amumu_Bard_Annie_Akali_Aatrox_Ezreal");
 
     private final String value;

@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class RecommendPickDto {
-    private String recommendChamp;
-    private String recommendRank;
+    private long champId;
+    private String champName;
     private String ChampTier;
 }
