@@ -68,7 +68,9 @@ public class RecommendPickApiTests {
         return Stream.of(
                 DynamicTest.dynamicTest("밴픽 추천 리스트를 조회한다.",
                         ()->{
-                    given(recommendPickFacade.getRecommend(Mockito.anyString(),
+                    given(recommendPickFacade.getRecommend(
+                            Mockito.anyString(),
+                            Mockito.anyString(),
                             Mockito.anyString(),
                             Mockito.anyString(),
                             Mockito.anyString(),

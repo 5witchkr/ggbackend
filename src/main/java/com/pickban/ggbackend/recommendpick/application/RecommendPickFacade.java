@@ -7,12 +7,13 @@ public interface RecommendPickFacade {
 
     /**
      * 추천픽 response dto를 반환하는 facade
+     * @param team
      * @param line
      * @param ban
-     * @param emLineChamp
+     * @param emLine
      * @param teamChamp
-     * @param emTeamChamp
+     * @param emChamp
      * @return RecommendPickResponseDto
      */
-    RecommendPickResponseDto getRecommend(String line, String ban, String emLineChamp, String teamChamp, String emTeamChamp);
+    RecommendPickResponseDto getRecommend(String team, String line, String ban, String emLine, String teamChamp, String emChamp);
 }

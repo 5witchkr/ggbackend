@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RecommendPickFacadeImpl implements RecommendPickFacade{
+
     @Override
-    public RecommendPickResponseDto getRecommend(String line, String ban, String emLineChamp, String teamChamp, String emTeamChamp) {
+    public RecommendPickResponseDto getRecommend(String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
         return null;
     }
 }
