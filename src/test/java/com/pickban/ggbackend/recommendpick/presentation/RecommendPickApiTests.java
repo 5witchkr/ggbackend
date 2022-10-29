@@ -58,7 +58,6 @@ public class RecommendPickApiTests {
         final RecommendPickResponseDto recommendPickResponseDto =
                 recommendDtoFactory.createRecommendPickResponseDtoMid();
 
-        final String ver = ApiParamEnum.VER.get();
         final String line = ApiParamEnum.LINE.get();
         final String emLineChamp = ApiParamEnum.EMLINECHAMP.get();
         final String teamChamp = ApiParamEnum.TEAMCHAMP.get();
@@ -74,12 +73,13 @@ public class RecommendPickApiTests {
                             Mockito.anyString(),
                             Mockito.anyString())).willReturn(recommendPickResponseDto);
                     ResultActions actions = mockMvc.perform(
-                            get("/api/{ver}", ver)
+                            get("/api")
+                                    .param("team", team)
                                     .param("line", line)
                                     .param("ban", ban)
-                                    .param("emLineChamp", emLineChamp)
+                                    .param("emLine", emLineChamp)
                                     .param("teamChamp", teamChamp)
-                                    .param("emTeamChamp",emTeamChamp)
+                                    .param("emChamp",emTeamChamp)
                                     .accept(MediaType.APPLICATION_JSON)
                                     .contentType(MediaType.APPLICATION_JSON)
                             );
@@ -88,22 +88,17 @@ public class RecommendPickApiTests {
                                     "get-recommend",
                                     getRequestPreProcessor(),
                                     getResponsePreProcessor(),
-                                    pathParameters(
-                                            parameterWithName("ver").description("LOL 버전 (필수입력)")
-                                    ),
                                     requestParameters(
+                                            parameterWithName("team").description("팀 진영 (필수입력)"),
                                             parameterWithName("line").description("선택라인 (필수입력)"),
-                                            parameterWithName("ban").description("밴 챔피언 (필수입력)"),
-                                            parameterWithName("emLineChamp").description("상대라이너 챔피언 (선택입력)"),
-                                            parameterWithName("teamChamp").description("아군 챔피언 (선택입력)"),
-                                            parameterWithName("emTeamChamp").description("적군 챔피언 (선택입력)")
+                                            parameterWithName("ban").description("밴 챔피언목록 (필수입력)"),
+                                            parameterWithName("emLine").description("상대라이너 챔피언 (선택입력)"),
+                                            parameterWithName("teamChamp").description("아군 챔피언목록 (선택입력)"),
+                                            parameterWithName("emChamp").description("적군 챔피언목록 (선택입력)")
                                     ),
                                     responseFields(
-                                            fieldWithPath("position").type(JsonFieldType.STRING).description("선택 포지션"),
                                             fieldWithPath("recommendPickList").type(JsonFieldType.ARRAY).description("추천 리스트"),
-                                            fieldWithPath("recommendPickList[].recommendChamp").type(JsonFieldType.STRING).description("추천 챔피언"),
-                                            fieldWithPath("recommendPickList[].recommendRank").type(JsonFieldType.STRING).description("추천점수"),
-                                            fieldWithPath("recommendPickList[].champTier").type(JsonFieldType.STRING).description("챔피언 티어"),
+                                            fieldWithPath("recommendPickList[]").type(JsonFieldType.STRING).description("추천 챔피언"),
                                             fieldWithPath("progamerPickList").type(JsonFieldType.ARRAY).description("프로게이머 픽"),
                                             fieldWithPath("progamerPickList[].proName").type(JsonFieldType.STRING).description("프로게이머 이름"),
                                             fieldWithPath("progamerPickList[].proNickname").type(JsonFieldType.STRING).description("프로게이머 닉네임"),
