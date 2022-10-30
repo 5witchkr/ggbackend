@@ -26,8 +26,6 @@ include::{snippets}/get-recommend/curl-request.adoc[]
 include::{snippets}/get-recommend/httpie-request.adoc[]
 .http-request
 include::{snippets}/get-recommend/http-request.adoc[]
-.path-parameters
-include::{snippets}/get-recommend/path-parameters.adoc[]
 .request-parameters
 include::{snippets}/get-recommend/request-parameters.adoc[]
 
@@ -38,3 +36,22 @@ include::{snippets}/get-recommend/http-response.adoc[]
 include::{snippets}/get-recommend/response-body.adoc[]
 .response-field
 include::{snippets}/get-recommend/response-fields.adoc[]
+
+=== 프로게이머 추천픽 조회[GET]
+==== Request
+.curl-request
+include::{snippets}/get-recommend-progamer/curl-request.adoc[]
+.httpie-request
+include::{snippets}/get-recommend-progamer/httpie-request.adoc[]
+.http-request
+include::{snippets}/get-recommend-progamer/http-request.adoc[]
+.request-parameters
+include::{snippets}/get-recommend-progamer/request-parameters.adoc[]
+
+==== Response
+.http-response
+include::{snippets}/get-recommend-progamer/http-response.adoc[]
+.response-body
+include::{snippets}/get-recommend-progamer/response-body.adoc[]
+.response-field
+include::{snippets}/get-recommend-progamer/response-fields.adoc[]

@@ -3,7 +3,6 @@ package com.pickban.ggbackend.recommendpick.utill;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
-import com.pickban.ggbackend.recommendpick.dto.RecommendPickResponseDto;
 
 
 import java.util.List;
@@ -11,85 +10,98 @@ import java.util.List;
 public class RecommendDtoFactory {
 
     /**
-     * 챔피언 추천픽 Dto
-     * @champ Lisandra
+     * Lissandra 113
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoLissandra() {
         return RecommendPickDto.builder()
-                .recommendChamp("Lissandra")
-                .recommendRank("78")
+                .champId(113)
                 .ChampTier("1")
                 .build();
     }
 
+
     /**
-     * 챔피언 추천픽 Dto
-     * @champ Ahri
+     * Ahri 89
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoAhri() {
         return RecommendPickDto.builder()
-                .recommendChamp("Ahri")
-                .recommendRank("68")
+                .champId(89)
                 .ChampTier("2")
                 .build();
     }
 
+
     /**
-     * 챔피언 추천픽 Dto
-     * @champ Sylas
+     * Sylas 143
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoSylas() {
         return RecommendPickDto.builder()
-                .recommendChamp("Sylas")
-                .recommendRank("56")
+                .champId(143)
                 .ChampTier("1")
                 .build();
     }
 
     /**
-     * 프로게이머픽 Dto
-     * @progamer Faker
-     * @return ProgamerPickDto
+     * Azir 121
+     * @return RecommendPickDto
+     */
+    public RecommendPickDto createRecommendPickDtoAzir() {
+        return RecommendPickDto.builder()
+                .champId(121)
+                .ChampTier("2")
+                .build();
+    }
+
+
+    /**
+     * Faker - Sylas
+     * @return ProgramerPickDto
      */
     public ProgamerPickDto createProgamerPickDtoFaker() {
         return ProgamerPickDto.builder()
                 .proName("Faker")
                 .proNickname("hide on bush")
-                .championName("Sylas")
+                .recommendPickDto(createRecommendPickDtoSylas())
                 .build();
     }
 
+
     /**
-     * 프로게이머픽 Dto
-     * @progamer Chovy
-     * @return ProgamerPickDto
+     * Chovy - Azir
+     * @return ProgramerPickDto
      */
     public ProgamerPickDto createProgamerPickDtoChovy() {
         return ProgamerPickDto.builder()
                 .proName("Chovy")
                 .proNickname("Gen.G Chovy")
-                .championName("Azir")
+                .recommendPickDto(createRecommendPickDtoAzir())
                 .build();
     }
 
 
     /**
-     * Recommend endpoint response dto
-     * @line mid
-     * @recommendListSize 3
-     * @progamerPickListSize 2
-     * @return RecommendPickResponseDto
+     * RecommendPick Dto Midline
+     * @size 3
+     * @return List<RecommendPickDto>
      */
-    public RecommendPickResponseDto createRecommendPickResponseDtoMid() {
-        return RecommendPickResponseDto.builder()
-                .recommendPickList(
-                        List.of(createRecommendPickDtoLissandra(), createRecommendPickDtoAhri(), createRecommendPickDtoSylas()))
-                .progamerPickList(List.of(createProgamerPickDtoFaker(), createProgamerPickDtoChovy()))
-                .position("mid")
-                .build();
+    public List<RecommendPickDto> createRecommendPickDtoMid() {
+        return List.of(createRecommendPickDtoLissandra(),
+                createRecommendPickDtoAhri(),
+                createRecommendPickDtoSylas());
+    }
+
+
+    /**
+     * ProgamerPick Dto Midline
+     * @size 2
+     * @return List<ProgamerPickDto>
+     */
+    public List<ProgamerPickDto> createProgamerPickDtoMid() {
+        return List.of(createProgamerPickDtoFaker(),
+                createProgamerPickDtoChovy());
     }
 
     /**
