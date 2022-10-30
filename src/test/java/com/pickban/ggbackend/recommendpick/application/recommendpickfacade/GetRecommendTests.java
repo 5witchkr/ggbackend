@@ -2,9 +2,11 @@ package com.pickban.ggbackend.recommendpick.application.recommendpickfacade;
 
 
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
+import com.pickban.ggbackend.recommendpick.application.RecommendPickFacadeImpl;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
+import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
 import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
 import com.pickban.ggbackend.recommendpick.utill.RecommendDtoFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +39,7 @@ public class GetRecommendTests {
     private MatchProcessor matchProcessor;
 
     @InjectMocks
-    private RecommendPickFacade recommendPickFacade;
+    private RecommendPickFacadeImpl recommendPickFacade;
 
     @InjectMocks
     private RecommendDtoFactory recommendDtoFactory;
@@ -75,7 +77,7 @@ public class GetRecommendTests {
 //                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
 
                     //when
-                    RecommendPickResponseDto result = recommendPickFacade
+                    List<RecommendPickDto> result = recommendPickFacade
                             .getRecommend(team, line, emLine, teamChamp, emChamp, ban);
 
                     //then
@@ -83,7 +85,7 @@ public class GetRecommendTests {
                     then(championProcessor).should(times(0)).getTopTier(anyString());
                     then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
-                    assertThat(result.getRecommendPickList().size(), equalTo(3));
+                    assertThat(result.size(), equalTo(3));
                 }),
                 DynamicTest.dynamicTest("성공케이스2: 상대라인 챔피언을 모를때 높은티어 추천리스트를 반환한다.", () -> {
                     //(해당라인의 높은티어 챔피언을 가져온다.)
@@ -100,7 +102,7 @@ public class GetRecommendTests {
 //                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
 
                     //when
-                    RecommendPickResponseDto result = recommendPickFacade
+                    List<RecommendPickDto> result = recommendPickFacade
                             .getRecommend(team, line, emLine, teamChamp, emChamp, ban);
 
                     //then
@@ -108,7 +110,7 @@ public class GetRecommendTests {
                     then(championProcessor).should(times(1)).getTopTier(anyString());
                     then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
-                    assertThat(result.getRecommendPickList().size(), equalTo(3));
+                    assertThat(result.size(), equalTo(3));
                 }),
                 DynamicTest.dynamicTest("성공케이스3: 상대라인 챔피언을 알지만 높은티어 추천리스트를 반환한다.", () -> {
                     //if (emChamp) champList = counter(emChamp);
@@ -123,13 +125,13 @@ public class GetRecommendTests {
                     //given
                     given(championProcessor.getCounter(Mockito.anyString()))
                             .willReturn(counterChampionList);
-                    given(championProcessor.getCounter(Mockito.anyString()))
+                    given(championProcessor.getTopTier(Mockito.anyString()))
                             .willReturn(highTierChampionList);
 //                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString())).willReturn();
 //                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
 
                     //when
-                    RecommendPickResponseDto result = recommendPickFacade
+                    List<RecommendPickDto> result = recommendPickFacade
                             .getRecommend(team, line, emLine, teamChamp, emChamp, ban);
 
                     //then
@@ -137,7 +139,7 @@ public class GetRecommendTests {
                     then(championProcessor).should(times(1)).getTopTier(anyString());
                     then(matchProcessor).should(times(2)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
-                    assertThat(result.getRecommendPickList().size(), equalTo(3));
+                    assertThat(result.size(), equalTo(3));
                 })
         );
     }
