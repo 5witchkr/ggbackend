@@ -3,7 +3,6 @@ package com.pickban.ggbackend.recommendpick.utill;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
-import com.pickban.ggbackend.recommendpick.dto.RecommendPickResponseDto;
 
 
 import java.util.List;
@@ -11,51 +10,47 @@ import java.util.List;
 public class RecommendDtoFactory {
 
     /**
-     * Lissandra
+     * Lissandra 113
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoLissandra() {
         return RecommendPickDto.builder()
                 .champId(113)
-                .champName("Lissandra")
                 .ChampTier("1")
                 .build();
     }
 
 
     /**
-     * Ahri
+     * Ahri 89
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoAhri() {
         return RecommendPickDto.builder()
                 .champId(89)
-                .champName("Ahri")
                 .ChampTier("2")
                 .build();
     }
 
 
     /**
-     * Sylas
+     * Sylas 143
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoSylas() {
         return RecommendPickDto.builder()
                 .champId(143)
-                .champName("Sylas")
                 .ChampTier("1")
                 .build();
     }
 
     /**
-     * Azir
+     * Azir 121
      * @return RecommendPickDto
      */
     public RecommendPickDto createRecommendPickDtoAzir() {
         return RecommendPickDto.builder()
                 .champId(121)
-                .champName("Azir")
                 .ChampTier("2")
                 .build();
     }
@@ -88,17 +83,25 @@ public class RecommendDtoFactory {
 
 
     /**
-     * Recommend endpoint response dto
-     * @recommendListSize 3
-     * @progamerPickListSize 2
-     * @return RecommendPickResponseDto
+     * RecommendPick Dto Midline
+     * @size 3
+     * @return List<RecommendPickDto>
      */
-    public RecommendPickResponseDto createRecommendPickResponseDtoMid() {
-        return RecommendPickResponseDto.builder()
-                .recommendPickList(
-                        List.of(createRecommendPickDtoLissandra(), createRecommendPickDtoAhri(), createRecommendPickDtoSylas()))
-                .progamerPickList(List.of(createProgamerPickDtoFaker(), createProgamerPickDtoChovy()))
-                .build();
+    public List<RecommendPickDto> createRecommendPickDtoMid() {
+        return List.of(createRecommendPickDtoLissandra(),
+                createRecommendPickDtoAhri(),
+                createRecommendPickDtoSylas());
+    }
+
+
+    /**
+     * ProgamerPick Dto Midline
+     * @size 2
+     * @return List<ProgamerPickDto>
+     */
+    public List<ProgamerPickDto> createProgamerPickDtoMid() {
+        return List.of(createProgamerPickDtoFaker(),
+                createProgamerPickDtoChovy());
     }
 
     /**

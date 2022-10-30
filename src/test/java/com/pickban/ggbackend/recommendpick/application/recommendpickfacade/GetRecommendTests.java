@@ -5,7 +5,6 @@ import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
-import com.pickban.ggbackend.recommendpick.dto.RecommendPickResponseDto;
 import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
 import com.pickban.ggbackend.recommendpick.utill.RecommendDtoFactory;
 import org.junit.jupiter.api.DisplayName;

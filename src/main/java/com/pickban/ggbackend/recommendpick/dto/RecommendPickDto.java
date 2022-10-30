@@ -10,6 +10,5 @@ import lombok.*;
 @Builder
 public class RecommendPickDto {
     private long champId;
-    private String champName;
     private String ChampTier;
 }
