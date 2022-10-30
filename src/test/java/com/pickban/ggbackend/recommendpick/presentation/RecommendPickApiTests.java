@@ -101,11 +101,16 @@ public class RecommendPickApiTests {
                                     ),
                                     responseFields(
                                             fieldWithPath("recommendPickList").type(JsonFieldType.ARRAY).description("추천 리스트"),
-                                            fieldWithPath("recommendPickList[]").type(JsonFieldType.STRING).description("추천 챔피언"),
+                                            fieldWithPath("recommendPickList[].champId").type(JsonFieldType.NUMBER).description("추천 챔피언 ID"),
+                                            fieldWithPath("recommendPickList[].champName").type(JsonFieldType.STRING).description("추천 챔피언 이름"),
+                                            fieldWithPath("recommendPickList[].champTier").type(JsonFieldType.STRING).description("추천 챔피언 티어"),
                                             fieldWithPath("progamerPickList").type(JsonFieldType.ARRAY).description("프로게이머 픽"),
                                             fieldWithPath("progamerPickList[].proName").type(JsonFieldType.STRING).description("프로게이머 이름"),
                                             fieldWithPath("progamerPickList[].proNickname").type(JsonFieldType.STRING).description("프로게이머 닉네임"),
-                                            fieldWithPath("progamerPickList[].championName").type(JsonFieldType.STRING).description("프로게이머 챔피언")
+                                            fieldWithPath("progamerPickList[].recommendPickDto").type(JsonFieldType.OBJECT).description("프로게이머 추천 챔피언"),
+                                            fieldWithPath("progamerPickList[].recommendPickDto.champId").type(JsonFieldType.NUMBER).description("프로게이머 챔피언 ID"),
+                                            fieldWithPath("progamerPickList[].recommendPickDto.champName").type(JsonFieldType.STRING).description("프로게이머 챔피언 이름"),
+                                            fieldWithPath("progamerPickList[].recommendPickDto.champTier").type(JsonFieldType.STRING).description("프로게이머 챔피언 티어")
                                     )
                             ));
 

@@ -14,7 +14,7 @@ public class RecommendPickApi {
 
     private final RecommendPickFacade recommendPickFacade;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity getPick(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
         return new ResponseEntity(recommendPickFacade.getRecommend(team, line, ban, emLine, teamChamp, emChamp), HttpStatus.OK);
     }
