@@ -139,6 +139,11 @@ public class RecommendDtoFactory {
         return List.of(championResponseDto1,championResponseDto2, championResponseDto3);
     }
 
+    /**
+     * 현재게임에서 사용가능한 챔피언리스트를 반환해준다.
+     * @size 3
+     * @return List<ChampionResponseDto>
+     */
     public List<ChampionResponseDto> createRemoveDisableChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
                 .builder().champId(143L).champTier("1Tier").build();
@@ -147,6 +152,19 @@ public class RecommendDtoFactory {
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
                 .builder().champId(113L).champTier("1Tier").build();
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
+    }
+
+    /**
+     * 현재게임에서 사용가능한 챔피언리스트를 반환해준다.
+     * @size 2
+     * @return List<ChampionResponseDto>
+     */
+    public List<ChampionResponseDto> createRemoveDisableChampionListMinus() {
+        ChampionResponseDto championResponseDto1 = ChampionResponseDto
+                .builder().champId(143L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto2 = ChampionResponseDto
+                .builder().champId(121L).champTier("2Tier").build();
+        return List.of(championResponseDto1, championResponseDto2);
     }
 
     public List<ChampionResponseDto> createSortTierChampionList() {
