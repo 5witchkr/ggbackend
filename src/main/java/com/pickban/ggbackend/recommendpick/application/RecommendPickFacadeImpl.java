@@ -9,7 +9,6 @@ import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,7 +34,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         List<ChampionResponseDto> removedChampList = matchProcessor
                 .removeDisableChamp(champDtoList, ban+"_"+emLine+"_"+teamChamp+"_"+emChamp);
 
-        //add champ logic
+        //todo add champ logic
         if (removedChampList.size() < 3) championProcessor.getTopTier(line);
 
         //sort tier
