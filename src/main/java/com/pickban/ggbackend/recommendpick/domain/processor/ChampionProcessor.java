@@ -14,9 +14,16 @@ public interface ChampionProcessor {
     List<ChampionResponseDto> getCounter(String emLineChamp);
 
     /**
-     * 해당라인의 높은티어 챔피언을 반환하는 로직
+     * 해당라인의 높은티어(1Tier) 챔피언을 반환하는 로직
      * @param line
      * @return List<ChampionResponseDto>
      */
     List<ChampionResponseDto> getTopTier(String line);
+
+    /**
+     * 해당라인의 중간티어(2Tier) 챔피언을 반환하는 로직
+     * @param line
+     * @return List<ChampionResponseDto>
+     */
+    List<ChampionResponseDto> getMiddleTier(String line);
 }

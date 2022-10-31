@@ -9,8 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ChampionResponseDto {
-    private String championName;
-
-    //todo refactor string to enum
-    private String championTier;
+    private Long champId;
+    private String champTier;
+    private Long champOpScore;
 }
