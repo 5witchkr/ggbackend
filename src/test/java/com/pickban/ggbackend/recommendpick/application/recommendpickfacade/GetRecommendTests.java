@@ -1,8 +1,8 @@
 package com.pickban.ggbackend.recommendpick.application.recommendpickfacade;
 
 
-import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacadeImpl;
+import com.pickban.ggbackend.recommendpick.application.mapper.RecommendPickMapper;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
@@ -38,6 +38,9 @@ public class GetRecommendTests {
     @Mock
     private MatchProcessor matchProcessor;
 
+    @Mock
+    private RecommendPickMapper recommendPickMapper;
+
     @InjectMocks
     private RecommendPickFacadeImpl recommendPickFacade;
 
@@ -48,11 +51,20 @@ public class GetRecommendTests {
     @DisplayName("application layer Facade getRecommend method 테스트")
     Stream<DynamicTest> getRecommend(){
 
+        final List<RecommendPickDto> recommendPickDtoList =
+                recommendDtoFactory.createRecommendPickDtoMid();
+
         final List<ChampionResponseDto> counterChampionList =
                 recommendDtoFactory.createCounterChampionList();
 
         final List<ChampionResponseDto> highTierChampionList =
                 recommendDtoFactory.createHighTierChampionList();
+
+        final List<ChampionResponseDto> removeDisableChampionList =
+                recommendDtoFactory.createRemoveDisableChampionList();
+
+        final List<ChampionResponseDto> sortTierChampionList =
+                recommendDtoFactory.createSortTierChampionList();
 
         final String team = ApiParamEnum.TEAM.get();
         final String line = ApiParamEnum.LINE.get();
@@ -69,12 +81,19 @@ public class GetRecommendTests {
                     //비어있는 배열인지 확인한다.
                     //(높은 티어순으로 정렬한다.)
                     //tierSort(champList);
+                    //dto mapper로 매핑해준다.
 
                     //give
                     given(championProcessor.getCounter(Mockito.anyString()))
                             .willReturn(counterChampionList);
-//                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString())).willReturn();
-//                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
+                    given(championProcessor.getTopTier(Mockito.anyString()))
+                            .willReturn(highTierChampionList);
+                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString()))
+                            .willReturn(removeDisableChampionList);
+                    given(matchProcessor.tierSort(Mockito.anyList()))
+                            .willReturn(sortTierChampionList);
+                    given(recommendPickMapper.champResDtoListToRecommendPickDtoList(Mockito.anyList()))
+                            .willReturn(recommendPickDtoList);
 
                     //when
                     List<RecommendPickDto> result = recommendPickFacade
@@ -82,9 +101,10 @@ public class GetRecommendTests {
 
                     //then
                     then(championProcessor).should(times(1)).getCounter(anyString());
-                    then(championProcessor).should(times(0)).getTopTier(anyString());
+                    then(championProcessor).should(times(1)).getTopTier(anyString());
                     then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
+                    then(recommendPickMapper).should(times(1)).champResDtoListToRecommendPickDtoList(anyList());
                     assertThat(result.size(), equalTo(3));
                 }),
                 DynamicTest.dynamicTest("성공케이스2: 상대라인 챔피언을 모를때 높은티어 추천리스트를 반환한다.", () -> {
@@ -94,12 +114,17 @@ public class GetRecommendTests {
                     //비어있는 배열인지 확인한다.
                     //(높은 티어순으로 정렬한다.)
                     //tierSort(champList);
+                    //dto mapper로 매핑해준다.
 
                     //given
-                    given(championProcessor.getCounter(Mockito.anyString()))
+                    given(championProcessor.getTopTier(Mockito.anyString()))
                             .willReturn(highTierChampionList);
-//                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString())).willReturn();
-//                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
+                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString()))
+                            .willReturn(removeDisableChampionList);
+                    given(matchProcessor.tierSort(Mockito.anyList()))
+                            .willReturn(sortTierChampionList);
+                    given(recommendPickMapper.champResDtoListToRecommendPickDtoList(Mockito.anyList()))
+                            .willReturn(recommendPickDtoList);
 
                     //when
                     List<RecommendPickDto> result = recommendPickFacade
@@ -110,6 +135,7 @@ public class GetRecommendTests {
                     then(championProcessor).should(times(1)).getTopTier(anyString());
                     then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
+                    then(recommendPickMapper).should(times(1)).champResDtoListToRecommendPickDtoList(anyList());
                     assertThat(result.size(), equalTo(3));
                 }),
                 DynamicTest.dynamicTest("성공케이스3: 상대라인 챔피언을 알지만 높은티어 추천리스트를 반환한다.", () -> {
@@ -121,14 +147,19 @@ public class GetRecommendTests {
                     //if (!chmaplist) champList = toptier(line);
                     //(높은 티어순으로 정렬한다.)
                     //tierSort(champList);
+                    //dto mapper로 매핑해준다.
 
                     //given
                     given(championProcessor.getCounter(Mockito.anyString()))
                             .willReturn(counterChampionList);
                     given(championProcessor.getTopTier(Mockito.anyString()))
                             .willReturn(highTierChampionList);
-//                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString())).willReturn();
-//                    given(matchProcessor.tierSort(Mockito.anyList())).willReturn();
+                    given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString()))
+                            .willReturn(removeDisableChampionList);
+                    given(matchProcessor.tierSort(Mockito.anyList()))
+                            .willReturn(sortTierChampionList);
+                    given(recommendPickMapper.champResDtoListToRecommendPickDtoList(Mockito.anyList()))
+                            .willReturn(recommendPickDtoList);
 
                     //when
                     List<RecommendPickDto> result = recommendPickFacade
@@ -137,8 +168,9 @@ public class GetRecommendTests {
                     //then
                     then(championProcessor).should(times(1)).getCounter(anyString());
                     then(championProcessor).should(times(1)).getTopTier(anyString());
-                    then(matchProcessor).should(times(2)).removeDisableChamp(anyList(),anyString());
+                    then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
                     then(matchProcessor).should(times(1)).tierSort(anyList());
+                    then(recommendPickMapper).should(times(1)).champResDtoListToRecommendPickDtoList(anyList());
                     assertThat(result.size(), equalTo(3));
                 })
         );

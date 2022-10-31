@@ -15,8 +15,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoLissandra() {
         return RecommendPickDto.builder()
-                .champId(113)
-                .ChampTier("1")
+                .champId(113L)
+                .champTier("1Tier")
                 .build();
     }
 
@@ -27,8 +27,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoAhri() {
         return RecommendPickDto.builder()
-                .champId(89)
-                .ChampTier("2")
+                .champId(89L)
+                .champTier("2Tier")
                 .build();
     }
 
@@ -39,8 +39,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoSylas() {
         return RecommendPickDto.builder()
-                .champId(143)
-                .ChampTier("1")
+                .champId(143L)
+                .champTier("1Tier")
                 .build();
     }
 
@@ -50,8 +50,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoAzir() {
         return RecommendPickDto.builder()
-                .champId(121)
-                .ChampTier("2")
+                .champId(121L)
+                .champTier("2Tier")
                 .build();
     }
 
@@ -111,30 +111,51 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createCounterChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().championName("Sylas").championTier("1Tier").build();
+                .builder().champId(143L).champTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().championName("Ahri").championTier("2Tier").build();
+                .builder().champId(89L).champTier("2Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().championName("Lissandra").championTier("1Tier").build();
+                .builder().champId(113L).champTier("1Tier").build();
         ChampionResponseDto championResponseDto4 = ChampionResponseDto
-                .builder().championName("Azir").championTier("2Tier").build();
+                .builder().champId(121L).champTier("2Tier").build();
 
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3, championResponseDto4);
-    };
+    }
 
     /**
      * 하이티어 챔피언리스트
+     * 143-Sylas 113-Lissandra 51-Akali
      * @championListSize 3
      * @return List<ChampionResponseDto>
      */
     public List<ChampionResponseDto> createHighTierChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().championName("Sylas").championTier("1Tier").build();
+                .builder().champId(143L).champTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().championName("Lissandra").championTier("1Tier").build();
+                .builder().champId(113L).champTier("1Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().championName("Akali").championTier("1Tier").build();
+                .builder().champId(51L).champTier("1Tier").build();
 
         return List.of(championResponseDto1,championResponseDto2, championResponseDto3);
-    };
+    }
+
+    public List<ChampionResponseDto> createRemoveDisableChampionList() {
+        ChampionResponseDto championResponseDto1 = ChampionResponseDto
+                .builder().champId(143L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto2 = ChampionResponseDto
+                .builder().champId(121L).champTier("2Tier").build();
+        ChampionResponseDto championResponseDto3 = ChampionResponseDto
+                .builder().champId(113L).champTier("1Tier").build();
+        return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
+    }
+
+    public List<ChampionResponseDto> createSortTierChampionList() {
+        ChampionResponseDto championResponseDto1 = ChampionResponseDto
+                .builder().champId(143L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto2 = ChampionResponseDto
+                .builder().champId(121L).champTier("2Tier").build();
+        ChampionResponseDto championResponseDto3 = ChampionResponseDto
+                .builder().champId(121L).champTier("2Tier").build();
+        return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
+    }
 }
