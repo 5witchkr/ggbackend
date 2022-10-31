@@ -35,7 +35,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
                 .removeDisableChamp(champDtoList, ban+"_"+emLine+"_"+teamChamp+"_"+emChamp);
 
         //todo add champ logic
-        if (removedChampList.size() < 3) championProcessor.getTopTier(line);
+        if (removedChampList.size() < 3) removedChampList = championProcessor.getTopTier(line);
 
         //sort tier
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);

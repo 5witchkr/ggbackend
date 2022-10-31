@@ -11,4 +11,5 @@ import lombok.*;
 public class ChampionResponseDto {
     private Long champId;
     private String champTier;
+    private Long champOpScore;
 }
