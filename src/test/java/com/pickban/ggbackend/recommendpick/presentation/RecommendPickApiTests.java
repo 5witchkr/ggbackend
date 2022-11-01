@@ -3,6 +3,7 @@ package com.pickban.ggbackend.recommendpick.presentation;
 
 import com.google.gson.Gson;
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
+import com.pickban.ggbackend.recommendpick.domain.MockDataSave;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
 import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
@@ -48,6 +49,9 @@ public class RecommendPickApiTests {
 
     @MockBean
     private RecommendPickFacade recommendPickFacade;
+
+    @MockBean
+    private MockDataSave mockDataSave;
 
     @InjectMocks
     private RecommendDtoFactory recommendDtoFactory;
