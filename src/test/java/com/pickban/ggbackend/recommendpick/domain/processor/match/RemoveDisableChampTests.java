@@ -38,17 +38,23 @@ public class RemoveDisableChampTests {
         return Stream.of(
                 DynamicTest.dynamicTest("성공케이스: 비활성화 챔피언을 리스트에서 제외시켜준다.", ()-> {
 
+
                     List<ChampionResponseDto> resultList =
                             matchProcessor.removeDisableChamp(championResponseDtoList, disableChampList);
 
+
                     assertThat(resultList.get(0).getChampId(), equalTo(removedChampList.get(0).getChampId()));
+                    assertThat(resultList.size(), equalTo(removedChampList.size()));
                 }),
                 DynamicTest.dynamicTest("성공케이스: 비활성화 챔피언이 없을경우 그대로 리턴해준다.", ()-> {
+
 
                     List<ChampionResponseDto> resultList =
                             matchProcessor.removeDisableChamp(championResponseDtoList, disableChampListIsBlank);
 
+
                     assertThat(resultList.get(0).getChampId(), equalTo(championResponseDtoList.get(0).getChampId()));
+                    assertThat(resultList.size(), equalTo(championResponseDtoList.size()));
                 }),
                 DynamicTest.dynamicTest("실패케이스: 비활성챔피언 리스트의 입력포멧이 잘못된경우 예외를 던져준다.", ()-> {
 
