@@ -167,6 +167,11 @@ public class RecommendDtoFactory {
         return List.of(championResponseDto1, championResponseDto2);
     }
 
+    /**
+     * 티어별로 정렬된 챔피언 Dto의 리스트
+     * @size 3
+     * @return List<ChampionResponseDto>
+     */
     public List<ChampionResponseDto> createSortTierChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
                 .builder().champId(143L).champTier("1Tier").build();
@@ -175,5 +180,27 @@ public class RecommendDtoFactory {
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
                 .builder().champId(121L).champTier("2Tier").build();
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
+    }
+
+    /**
+     * removeDisableChampTest에 사용되기위한 Input 챔피언Dto 리스트.
+     * 1번, 3번, 6번, 143번, 121번, 113번 챔피언Dto를 포함하고있다.
+     * @size 6
+     * @return List<ChampionResponseDto>
+     */
+    public List<ChampionResponseDto> createChampionListForInputRemoveTest() {
+        ChampionResponseDto championResponseDto1 = ChampionResponseDto
+                .builder().champId(1L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto2 = ChampionResponseDto
+                .builder().champId(3L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto3 = ChampionResponseDto
+                .builder().champId(6L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto4 = ChampionResponseDto
+                .builder().champId(143L).champTier("1Tier").build();
+        ChampionResponseDto championResponseDto5 = ChampionResponseDto
+                .builder().champId(121L).champTier("2Tier").build();
+        ChampionResponseDto championResponseDto6 = ChampionResponseDto
+                .builder().champId(113L).champTier("1Tier").build();
+        return List.of(championResponseDto1, championResponseDto2, championResponseDto3, championResponseDto4, championResponseDto5, championResponseDto6);
     }
 }
