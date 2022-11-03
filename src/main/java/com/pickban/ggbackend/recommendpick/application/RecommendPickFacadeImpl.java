@@ -22,13 +22,21 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
+
+        teamChamp = nullCheck(teamChamp);
+        emChamp = nullCheck(emChamp);
+        emLine = nullCheck(emLine);
+
         List<ChampionResponseDto> champDtoList;
+
+        //todo refactor
         //get champ list
-        if (!emLine.isEmpty() || !emLine.isBlank()) {
-            champDtoList = championProcessor.getCounter(emLine);
-        } else {
+        if (emLine.equals("0")) {
             champDtoList = championProcessor.getTopTier(line);
+        } else {
+            champDtoList = championProcessor.getCounter(emLine);
         }
+
         //todo refactor stream form
         //remove
         List<ChampionResponseDto> removedChampList = matchProcessor
@@ -42,6 +50,11 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
         //response mapping
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
+    }
+
+    private String nullCheck(String teamChamp) {
+        if (teamChamp == null || teamChamp.isBlank()) teamChamp = "0";
+        return teamChamp;
     }
 
     @Override
