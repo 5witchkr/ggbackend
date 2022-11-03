@@ -19,20 +19,35 @@ public class MockDataSave {
         //                "Aatrox": "266",
         championRepository.save(new Champion(266L, "Aatrox", "top", "1Tier", 96L, List.of()));
         //                "Ahri": "103",
+        championRepository.save(new Champion(103L, "Ahri", "mid", "1Tier", 95L, List.of()));
         //                "Akali": "84",
+        championRepository.save(new Champion(84L, "Ahri", "mid", "2Tier", 85L, List.of()));
         //                "Akshan": "166",
+        championRepository.save(new Champion(166L, "Akshan", "mid", "3Tier", 71L, List.of()));
         //                "Alistar": "12",
+        championRepository.save(new Champion(12L, "Alistar", "sup", "4Tier", 51L, List.of()));
         //                "Amumu": "32",
+        championRepository.save(new Champion(32L, "Amumu", "sup", "2Tier", 81L, List.of()));
 //                "Anivia": "34",
+        championRepository.save(new Champion(34L, "Anivia", "mid", "2Tier", 81L, List.of()));
 //                "Annie": "1",
+        championRepository.save(new Champion(1L, "Annie", "mid", "5Tier", 31L, List.of()));
 //                "Aphelios": "523",
+        championRepository.save(new Champion(523L, "Aphelios", "adc", "4Tier", 71L, List.of()));
 //                "Ashe": "22",
+        championRepository.save(new Champion(22L, "Ashe", "adc", "2Tier", 81L, List.of()));
 //                "AurelionSol": "136",
+        championRepository.save(new Champion(136L, "AurelionSol", "mid", "6Tier", 11L, List.of()));
 //                "Azir": "268",
+        championRepository.save(new Champion(268L, "Azir", "mid", "4Tier", 77L, List.of()));
 //                "Bard": "432",
+        championRepository.save(new Champion(432L, "Bard", "sup", "4Tier", 64L, List.of()));
 //                "Belveth": "200",
+        championRepository.save(new Champion(200L, "Belveth", "jg", "1Tier", 98L, List.of()));
 //                "Blitzcrank": "53",
+        championRepository.save(new Champion(53L, "Blitzcrank", "sup", "1Tier", 95L, List.of()));
 //                "Brand": "63",
+        championRepository.save(new Champion(63L, "Brand", "sup", "4Tier", 65L, List.of()));
 //                "Braum": "201",
 //                "Caitlyn": "51",
 //                "Camille": "164",
@@ -81,6 +96,7 @@ public class MockDataSave {
 //                "Karthus": "30",
 //                "Kassadin": "38",
 //                "Katarina": "55",
+        championRepository.save(new Champion(55L, "Katarina", "mid", "1Tier", 97L, List.of()));
 //                "Kayle": "10",
 //                "Kayn": "141",
 //                "Kennen": "85",
@@ -157,7 +173,9 @@ public class MockDataSave {
 //                "Soraka": "16",
 //                "Swain": "50",
 //                "Sylas": "517",
+        championRepository.save(new Champion(517L, "Sylas", "mid", "1Tier", 96L, List.of()));
 //                "Syndra": "134",
+        championRepository.save(new Champion(134L, "Syndra", "mid", "1Tier", 98L, List.of()));
 //                "TahmKench": "223",
 //                "Taliyah": "163",
 //                "Talon": "91",
@@ -177,6 +195,7 @@ public class MockDataSave {
 //                "Veigar": "45",
 //                "Velkoz": "161",
 //                "Vex": "711",
+        championRepository.save(new Champion(711L, "Vex", "mid", "1Tier", 100L, List.of()));
 //                "Vi": "254",
 //                "Viego": "234",
 //                "Viktor": "112",
@@ -193,6 +212,7 @@ public class MockDataSave {
 //                "Yuumi": "350",
 //                "Zac": "154",
 //                "Zed": "238",
+        championRepository.save(new Champion(238L, "Zed", "mid", "1Tier", 99L, List.of()));
 //                "Zeri": "221",
 //                "Ziggs": "115",
 //                "Zilean": "26",
