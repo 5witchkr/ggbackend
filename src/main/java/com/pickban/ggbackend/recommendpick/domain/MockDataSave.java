@@ -113,41 +113,71 @@ public class MockDataSave {
 //                "Jax": "24",
         championRepository.save(new Champion(24L, "Jax", "top", "2Tier", 87L, List.of()));
 //                "Jayce": "126",
+        championRepository.save(new Champion(126L, "Jayce", "top", "4Tier", 77L, List.of()));
 //                "Jhin": "202",
+        championRepository.save(new Champion(202L, "Jhin", "adc", "1Tier", 91L, List.of()));
 //                "Jinx": "222",
+        championRepository.save(new Champion(222L, "Jinx", "adc", "3Tier", 81L, List.of()));
 //                "Kaisa": "145",
+        championRepository.save(new Champion(145L, "Kaisa", "adc", "1Tier", 95L, List.of()));
 //                "Kalista": "429",
+        championRepository.save(new Champion(429L, "Kalista", "adc", "4Tier", 71L, List.of()));
 //                "Karma": "43",
+        championRepository.save(new Champion(43L, "Karma", "sup", "3Tier", 85L, List.of()));
 //                "Karthus": "30",
+        championRepository.save(new Champion(30L, "Karthus", "jg", "4Tier", 70L, List.of()));
 //                "Kassadin": "38",
+        championRepository.save(new Champion(38L, "Kassadin", "mid", "3Tier", 81L, List.of()));
 //                "Katarina": "55",
         championRepository.save(new Champion(55L, "Katarina", "mid", "1Tier", 97L, List.of()));
 //                "Kayle": "10",
+        championRepository.save(new Champion(10L, "Kayle", "top", "4Tier", 68L, List.of()));
 //                "Kayn": "141",
+        championRepository.save(new Champion(141L, "Kayn", "jg", "2Tier", 82L, List.of()));
 //                "Kennen": "85",
+        championRepository.save(new Champion(85L, "Kennen", "top", "5Tier", 70L, List.of()));
 //                "Khazix": "121",
+        championRepository.save(new Champion(121L, "Khazix", "jg", "2Tier", 88L, List.of()));
 //                "Kindred": "203",
+        championRepository.save(new Champion(203L, "Kindred", "jg", "2Tier", 89L, List.of()));
 //                "Kled": "240",
         championRepository.save(new Champion(240L, "Kled", "top", "2Tier", 81L, List.of()));
 //                "KogMaw": "96",
+        championRepository.save(new Champion(96L, "KogMaw", "adc", "4Tier", 70L, List.of()));
 //                "Leblanc": "7",
+        championRepository.save(new Champion(7L, "Leblanc", "mid", "4Tier", 80L, List.of()));
 //                "LeeSin": "64",
+        championRepository.save(new Champion(64L, "LeeSin", "jg", "3Tier", 85L, List.of()));
 //                "Leona": "89",
+        championRepository.save(new Champion(89L, "Leona", "sup", "3Tier", 85L, List.of()));
 //                "Lillia": "876",
+        championRepository.save(new Champion(876L, "Lillia", "jg", "3Tier", 77L, List.of()));
 //                "Lissandra": "127",
+        championRepository.save(new Champion(127L, "Lissandra", "mid", "4Tier", 79L, List.of()));
 //                "Lucian": "236",
+        championRepository.save(new Champion(236L, "Lucian", "adc", "3Tier", 86L, List.of()));
 //                "Lulu": "117",
+        championRepository.save(new Champion(117L, "Lulu", "sup", "3Tier", 86L, List.of()));
 //                "Lux": "99",
+        championRepository.save(new Champion(99L, "Lux", "sup", "2Tier", 89L, List.of()));
 //                "Malphite": "54",
+        championRepository.save(new Champion(54L, "Malphite", "top", "4Tier", 69L, List.of()));
 //                "Malzahar": "90",
+        championRepository.save(new Champion(90L, "Malzahar", "mid", "3Tier", 74L, List.of()));
 //                "Maokai": "57",
+        championRepository.save(new Champion(57L, "Maokai", "sup", "2Tier", 79L, List.of()));
 //                "MasterYi": "11",
+        championRepository.save(new Champion(11L, "MasterYi", "jg", "1Tier", 90L, List.of()));
 //                "MissFortune": "21",
+        championRepository.save(new Champion(21L, "MissFortune", "adc", "3Tier", 82L, List.of()));
 //                "MonkeyKing": "62",
+        championRepository.save(new Champion(62L, "MonkeyKing", "jg", "3Tier", 73L, List.of()));
 //                "Mordekaiser": "82",
         championRepository.save(new Champion(82L, "Mordekaiser", "top", "1Tier", 95L, List.of()));
 //                "Morgana": "25",
+        championRepository.save(new Champion(25L, "Morgana", "sup", "2Tier", 89L, List.of()));
 //                "Nami": "267",
+        championRepository.save(new Champion(267L, "Nami", "sup", "1Tier", 97L, List.of()));
 //                "Nasus": "75",
         championRepository.save(new Champion(75L, "Nasus", "top", "1Tier", 98L, List.of()));
 //                "Nautilus": "111",
