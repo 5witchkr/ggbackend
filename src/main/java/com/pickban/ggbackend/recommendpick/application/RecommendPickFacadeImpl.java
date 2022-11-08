@@ -29,6 +29,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         String disableChampList = ban+"_"+emLine+"_"+teamChamp+"_"+emChamp;
 
         //getCounterOrTopTier without removedChamp
+        //todo refactor getCounterOrTopTier -> getCounterOrHighScoreChamp
         List<ChampionResponseDto> removedChampList = matchProcessor
                 .removeDisableChamp(getCounterOrTopTier(line, emLine), disableChampList);
 
