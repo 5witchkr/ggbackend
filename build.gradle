@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id "org.asciidoctor.jvm.convert" version "3.3.2"
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.pickban'
@@ -64,5 +65,65 @@ bootJar {
 	dependsOn copyDocument
 	from ("${asciidoctor.outputDir}") {
 		into 'static/docs'
+	}
+}
+
+//jacoco
+jacoco {
+	toolVersion = "0.8.5"
+}
+
+test {
+	//todo exclude setting
+	exclude ''
+	useJUnitPlatform()
+	finalizedBy 'jacocoTestReport'
+}
+
+jacocoTestReport {
+	reports {
+		html.required.set(true)
+		xml.required.set(false)
+		csv.required.set(false)
+//		html.destincation file("src/jacoco/jacoco.html")
+		afterEvaluate {
+			classDirectories.setFrom(files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: [
+						//todo exclude setting
+						""
+				])
+			}))
+		}
+	}
+	finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+			        //todo exclude setting
+					""
+			])
+		}))
+	}
+	violationRules {
+		rule {
+			excludes = [
+			        "**.*Application*"
+			]
+			element = 'CLASS'
+			enabled = 'true'
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.00
+			}
+			limit {
+				counter = 'BRANCH'
+				value = 'COVEREDRATIO'
+				minimum = 0.00
+			}
+		}
 	}
 }
