@@ -26,30 +26,33 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         teamChamp = nullCheck(teamChamp);
         emChamp = nullCheck(emChamp);
         emLine = nullCheck(emLine);
+        String disableChampList = ban+"_"+emLine+"_"+teamChamp+"_"+emChamp;
 
-        List<ChampionResponseDto> champDtoList;
-
-        //todo refactor
-        //get champ list
-        if (emLine.equals("0")) {
-            champDtoList = championProcessor.getTopTier(line);
-        } else {
-            champDtoList = championProcessor.getCounter(emLine);
-        }
-
-        //todo refactor stream form
-        //remove
+        //getCounterOrTopTier without removedChamp
         List<ChampionResponseDto> removedChampList = matchProcessor
-                .removeDisableChamp(champDtoList, ban+"_"+emLine+"_"+teamChamp+"_"+emChamp);
+                .removeDisableChamp(getCounterOrTopTier(line, emLine), disableChampList);
 
-        //todo add champ logic
-        if (removedChampList.size() < 3) removedChampList = championProcessor.getTopTier(line);
+        //add more champ logic
+        if (removedChampList.size() < 3)  removedChampList = matchProcessor
+                .removeDisableChamp(championProcessor.getTopTier(line), disableChampList);
+        if (removedChampList.size() < 3)  removedChampList = matchProcessor
+                .removeDisableChamp(championProcessor.getMiddleTier(line), disableChampList);
 
         //sort tier
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
 
         //response mapping
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
+    }
+
+    private List<ChampionResponseDto> getCounterOrTopTier(String line, String emLine) {
+        List<ChampionResponseDto> champDtoList;
+        if (emLine.equals("0")) {
+            champDtoList = championProcessor.getTopTier(line);
+        } else {
+            champDtoList = championProcessor.getCounter(emLine);
+        }
+        return champDtoList;
     }
 
     private String nullCheck(String teamChamp) {
