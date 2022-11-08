@@ -22,26 +22,42 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
-        List<ChampionResponseDto> champDtoList;
-        //get champ list
-        if (!emLine.isEmpty() || !emLine.isBlank()) {
-            champDtoList = championProcessor.getCounter(emLine);
-        } else {
-            champDtoList = championProcessor.getTopTier(line);
-        }
-        //todo refactor stream form
-        //remove
-        List<ChampionResponseDto> removedChampList = matchProcessor
-                .removeDisableChamp(champDtoList, ban+"_"+emLine+"_"+teamChamp+"_"+emChamp);
 
-        //todo add champ logic
-        if (removedChampList.size() < 3) removedChampList = championProcessor.getTopTier(line);
+        teamChamp = nullCheck(teamChamp);
+        emChamp = nullCheck(emChamp);
+        emLine = nullCheck(emLine);
+        String disableChampList = ban+"_"+emLine+"_"+teamChamp+"_"+emChamp;
+
+        //getCounterOrTopTier without removedChamp
+        List<ChampionResponseDto> removedChampList = matchProcessor
+                .removeDisableChamp(getCounterOrTopTier(line, emLine), disableChampList);
+
+        //add more champ logic
+        if (removedChampList.size() < 3)  removedChampList = matchProcessor
+                .removeDisableChamp(championProcessor.getTopTier(line), disableChampList);
+        if (removedChampList.size() < 3)  removedChampList = matchProcessor
+                .removeDisableChamp(championProcessor.getMiddleTier(line), disableChampList);
 
         //sort tier
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
 
         //response mapping
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
+    }
+
+    private List<ChampionResponseDto> getCounterOrTopTier(String line, String emLine) {
+        List<ChampionResponseDto> champDtoList;
+        if (emLine.equals("0")) {
+            champDtoList = championProcessor.getTopTier(line);
+        } else {
+            champDtoList = championProcessor.getCounter(emLine);
+        }
+        return champDtoList;
+    }
+
+    private String nullCheck(String teamChamp) {
+        if (teamChamp == null || teamChamp.isBlank()) teamChamp = "0";
+        return teamChamp;
     }
 
     @Override
