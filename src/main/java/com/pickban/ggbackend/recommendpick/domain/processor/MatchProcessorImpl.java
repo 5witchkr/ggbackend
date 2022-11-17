@@ -29,12 +29,6 @@ public class MatchProcessorImpl implements MatchProcessor{
     @Override
     public List<ChampionResponseDto> removeDisableChamp(List<ChampionResponseDto> championResponseDtoList, String disableChampList) {
 
-        //todo refactor return 부분 개선
-        //제한 챔피언이 없을경우 그대로 리턴해준다.
-        if (disableChampList==null || disableChampList.isBlank()) {
-            return championResponseDtoList;
-        }
-
         //todo refactor Exception 처리
         List<Long> disableChampLists;
         try {
