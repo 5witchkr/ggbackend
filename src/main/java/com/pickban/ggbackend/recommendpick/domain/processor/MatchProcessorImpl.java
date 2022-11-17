@@ -28,7 +28,6 @@ public class MatchProcessorImpl implements MatchProcessor{
 
     @Override
     public List<ChampionResponseDto> removeDisableChamp(List<ChampionResponseDto> championResponseDtoList, String disableChampList) {
-        //제한 챔피언을 제외하고 리턴해준다.
         return championResponseDtoList.stream()
                 .filter(champ -> !convertDisableChampList(disableChampList).contains(champ.getChampId()))
                 .collect(Collectors.toList());
