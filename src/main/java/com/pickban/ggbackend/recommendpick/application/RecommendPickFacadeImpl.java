@@ -6,10 +6,15 @@ import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
+import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
+import com.pickban.ggbackend.recommendpick.enummodel.LineEnum;
+import com.pickban.ggbackend.recommendpick.enummodel.TeamEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -21,17 +26,14 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     private final RecommendPickMapper recommendPickMapper;
 
     @Override
-    public List<RecommendPickDto> getRecommend(String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
+    public List<RecommendPickDto> getRecommend(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
 
-        teamChamp = nullCheck(teamChamp);
-        emChamp = nullCheck(emChamp);
-        emLine = nullCheck(emLine);
-        String disableChampList = ban+"_"+emLine+"_"+teamChamp+"_"+emChamp;
+        String disableChampList = recommendRequestDto.getDisabledChampList();
 
         //getCounterOrTopTier without removedChamp
         //todo refactor getCounterOrTopTier -> getCounterOrHighScoreChamp
         List<ChampionResponseDto> removedChampList = matchProcessor
-                .removeDisableChamp(getCounterOrTopTier(line, emLine), disableChampList);
+                .removeDisableChamp(getCounterOrTopTier(line, recommendRequestDto.getEmLine()), disableChampList);
 
         //add more champ logic
         if (removedChampList.size() < 3)  removedChampList = matchProcessor
@@ -46,23 +48,18 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
     }
 
-    private List<ChampionResponseDto> getCounterOrTopTier(String line, String emLine) {
+    private List<ChampionResponseDto> getCounterOrTopTier(LineEnum line, String emLine) {
         List<ChampionResponseDto> champDtoList;
         if (emLine.equals("0")) {
-            champDtoList = championProcessor.getTopTier(line);
+            champDtoList = championProcessor.getTopTier(LineEnum);
         } else {
             champDtoList = championProcessor.getCounter(emLine);
         }
         return champDtoList;
     }
 
-    private String nullCheck(String teamChamp) {
-        if (teamChamp == null || teamChamp.isBlank()) teamChamp = "0";
-        return teamChamp;
-    }
-
     @Override
-    public List<ProgamerPickDto> getRecommendProgamer(String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
+    public List<ProgamerPickDto> getRecommendProgamer(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
         return null;
     }
 }
