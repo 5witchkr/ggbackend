@@ -27,7 +27,6 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     @Override
     public List<RecommendPickDto> getRecommend(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
-
         String disableChampList = recommendRequestDto.getDisabledChampList();
 
         //getCounterOrTopTier without removedChamp
@@ -35,17 +34,23 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         List<ChampionResponseDto> removedChampList = matchProcessor
                 .removeDisableChamp(getCounterOrTopTier(line, recommendRequestDto.getEmLine()), disableChampList);
 
-        //add more champ logic
-        if (removedChampList.size() < 3)  removedChampList = matchProcessor
-                .removeDisableChamp(championProcessor.getTopTier(line), disableChampList);
-        if (removedChampList.size() < 3)  removedChampList = matchProcessor
-                .removeDisableChamp(championProcessor.getMiddleTier(line), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getTopTier(line), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getMiddleTier(line), disableChampList);
 
-        //sort tier
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
 
-        //response mapping
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
+    }
+
+    @Override
+    public List<ProgamerPickDto> getRecommendProgamer(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
+        return null;
+    }
+
+    private List<ChampionResponseDto> checkChampCount(List<ChampionResponseDto> removedChampList, List<ChampionResponseDto> championProcessor, String disableChampList) {
+        if (removedChampList.size() < 3)  removedChampList = matchProcessor
+                .removeDisableChamp(championProcessor, disableChampList);
+        return removedChampList;
     }
 
     private List<ChampionResponseDto> getCounterOrTopTier(LineEnum line, String emLine) {
@@ -58,8 +63,4 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         return champDtoList;
     }
 
-    @Override
-    public List<ProgamerPickDto> getRecommendProgamer(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
-        return null;
-    }
 }
