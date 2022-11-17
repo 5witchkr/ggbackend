@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -35,7 +36,7 @@ public class RemoveDisableChampTests {
 
         final List<ChampionResponseDto> championResponseDtoList = recommendDtoFactory.createChampionListForInputRemoveTest();
         final String disableChampList = "1_2_3_4_5_6";
-        final String disableChampListIsBlank = "";
+        final String disableChampListIsBlank = "0_0_0_0";
         final String disableChampListIsError = "____%$#";
         final List<ChampionResponseDto> removedChampList = recommendDtoFactory.createRemoveDisableChampionList();
 
@@ -61,15 +62,11 @@ public class RemoveDisableChampTests {
                     assertThat(resultList.get(0).getChampId(), equalTo(championResponseDtoList.get(0).getChampId()));
                     assertThat(resultList.size(), equalTo(championResponseDtoList.size()));
                 }),
-                DynamicTest.dynamicTest("성공케이스: 비활성화 챔피언이 없을경우(Null) 그대로 리턴해준다.", ()-> {
+                DynamicTest.dynamicTest("실패케이스: 비활성화 챔피언이 없을경우(Null) 예외를 던져준다.", ()-> {
 
-
-                    List<ChampionResponseDto> resultList =
-                            matchProcessor.removeDisableChamp(championResponseDtoList, null);
-
-
-                    assertThat(resultList.get(0).getChampId(), equalTo(championResponseDtoList.get(0).getChampId()));
-                    assertThat(resultList.size(), equalTo(championResponseDtoList.size()));
+                    assertThatThrownBy(() -> matchProcessor.removeDisableChamp(championResponseDtoList, null))
+                            .isInstanceOf(IllegalArgumentException.class)
+                            .hasMessageContaining("Error DisableChampList");
                 }),
                 DynamicTest.dynamicTest("실패케이스: 비활성챔피언 리스트의 입력포멧이 잘못된경우 예외를 던져준다.", ()-> {
 
