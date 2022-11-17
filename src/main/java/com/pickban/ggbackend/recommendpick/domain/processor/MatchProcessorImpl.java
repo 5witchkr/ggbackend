@@ -28,21 +28,21 @@ public class MatchProcessorImpl implements MatchProcessor{
 
     @Override
     public List<ChampionResponseDto> removeDisableChamp(List<ChampionResponseDto> championResponseDtoList, String disableChampList) {
+        //제한 챔피언을 제외하고 리턴해준다.
+        return championResponseDtoList.stream()
+                .filter(champ -> !convertDisableChampList(disableChampList).contains(champ.getChampId()))
+                .collect(Collectors.toList());
+    }
 
-        //todo refactor Exception 처리
+    private List<Long> convertDisableChampList(String disableChampList) {
         List<Long> disableChampLists;
         try {
             disableChampLists = Arrays.stream(disableChampList.split("_"))
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
-            System.out.println(disableChampList);
         } catch (Exception e) {
             throw new IllegalArgumentException("Validate Error DisableChampList");
         }
-
-        //제한 챔피언을 제외하고 리턴해준다.
-        return championResponseDtoList.stream()
-                .filter(champ -> !disableChampLists.contains(champ.getChampId()))
-                .collect(Collectors.toList());
+        return disableChampLists;
     }
 }
