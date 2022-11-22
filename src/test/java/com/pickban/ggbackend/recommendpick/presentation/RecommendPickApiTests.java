@@ -6,6 +6,7 @@ import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
 import com.pickban.ggbackend.recommendpick.domain.MockDataSave;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
+import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
 import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
 import com.pickban.ggbackend.recommendpick.utill.RecommendDtoFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -80,10 +81,7 @@ public class RecommendPickApiTests {
                     given(recommendPickFacade.getRecommend(
                             Mockito.anyString(),
                             Mockito.anyString(),
-                            Mockito.anyString(),
-                            Mockito.anyString(),
-                            Mockito.anyString(),
-                            Mockito.anyString())).willReturn(recommendPickDtoList);
+                            Mockito.any(RecommendRequestDto.class))).willReturn(recommendPickDtoList);
                     ResultActions actions = mockMvc.perform(
                             get("/api/recommend")
                                     .param("team", team)
@@ -121,10 +119,7 @@ public class RecommendPickApiTests {
                             given(recommendPickFacade.getRecommendProgamer(
                                     Mockito.anyString(),
                                     Mockito.anyString(),
-                                    Mockito.anyString(),
-                                    Mockito.anyString(),
-                                    Mockito.anyString(),
-                                    Mockito.anyString())).willReturn(progamerPickDtoList);
+                                    Mockito.any(RecommendRequestDto.class))).willReturn(progamerPickDtoList);
                             ResultActions actions = mockMvc.perform(
                                     get("/api/recommend/progamer")
                                             .param("team", team)
