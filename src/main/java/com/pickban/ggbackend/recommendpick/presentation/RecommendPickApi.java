@@ -3,6 +3,7 @@ package com.pickban.ggbackend.recommendpick.presentation;
 
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
 import com.pickban.ggbackend.recommendpick.domain.MockDataSave;
+import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,24 @@ public class RecommendPickApi {
 
     @GetMapping("")
     public ResponseEntity getPick(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
-        return new ResponseEntity(recommendPickFacade.getRecommend(team, line, ban, emLine, teamChamp, emChamp), HttpStatus.OK);
+        return new ResponseEntity(recommendPickFacade.getRecommend(team, line,
+                RecommendRequestDto.builder()
+                        .ban(ban)
+                        .emLine(emLine)
+                        .teamChamp(teamChamp)
+                        .emChamp(emChamp)
+                        .build()), HttpStatus.OK);
     }
 
     @GetMapping("/progamer")
     public ResponseEntity getPickProgamer(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
-        return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line, ban, emLine, teamChamp, emChamp), HttpStatus.OK);
+        return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line,
+                RecommendRequestDto.builder()
+                        .ban(ban)
+                        .emLine(emLine)
+                        .teamChamp(teamChamp)
+                        .emChamp(emChamp)
+                        .build()), HttpStatus.OK);
     }
 
     @PostMapping("/dev")

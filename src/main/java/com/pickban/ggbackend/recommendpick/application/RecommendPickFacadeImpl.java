@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -26,7 +25,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     private final RecommendPickMapper recommendPickMapper;
 
     @Override
-    public List<RecommendPickDto> getRecommend(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
+    public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
         String disableChampList = recommendRequestDto.getDisabledChampList();
 
         //getCounterOrTopTier without removedChamp
@@ -43,7 +42,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     }
 
     @Override
-    public List<ProgamerPickDto> getRecommendProgamer(TeamEnum team, LineEnum line, RecommendRequestDto recommendRequestDto) {
+    public List<ProgamerPickDto> getRecommendProgamer(String team, String line, RecommendRequestDto recommendRequestDto) {
         return null;
     }
 
@@ -53,10 +52,10 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         return removedChampList;
     }
 
-    private List<ChampionResponseDto> getCounterOrTopTier(LineEnum line, String emLine) {
+    private List<ChampionResponseDto> getCounterOrTopTier(String line, String emLine) {
         List<ChampionResponseDto> champDtoList;
         if (emLine.equals("0")) {
-            champDtoList = championProcessor.getTopTier(LineEnum);
+            champDtoList = championProcessor.getTopTier(line);
         } else {
             champDtoList = championProcessor.getCounter(emLine);
         }

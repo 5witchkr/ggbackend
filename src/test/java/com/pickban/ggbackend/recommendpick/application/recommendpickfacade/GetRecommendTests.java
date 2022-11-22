@@ -7,6 +7,7 @@ import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
+import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
 import com.pickban.ggbackend.recommendpick.utill.ApiParamEnum;
 import com.pickban.ggbackend.recommendpick.utill.RecommendDtoFactory;
 import org.junit.jupiter.api.*;
@@ -17,12 +18,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.stream.Stream;
+
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -54,10 +54,7 @@ public class GetRecommendTests {
     private List<ChampionResponseDto> sortTierChampionList;
     private String team;
     private String line;
-    private String emLine;
-    private String teamChamp;
-    private String emChamp;
-    private String ban;
+    private RecommendRequestDto recommendRequestDto;
 
     @BeforeEach
     public void setup() {
@@ -67,12 +64,16 @@ public class GetRecommendTests {
         removeDisableChampionList = recommendDtoFactory.createRemoveDisableChampionList();
         removeDisableChampionListMinus = recommendDtoFactory.createRemoveDisableChampionListMinus();
         sortTierChampionList = recommendDtoFactory.createSortTierChampionList();
+
         team = ApiParamEnum.TEAM.get();
         line = ApiParamEnum.LINE.get();
-        emLine = ApiParamEnum.EMLINE.get();
-        teamChamp = ApiParamEnum.TEAMCHAMP.get();
-        emChamp = ApiParamEnum.EMCHAMP.get();
-        ban = ApiParamEnum.BAN.get();
+        recommendRequestDto = RecommendRequestDto
+                .builder()
+                .ban(ApiParamEnum.BAN.get())
+                .emLine(ApiParamEnum.EMLINE.get())
+                .teamChamp(ApiParamEnum.TEAMCHAMP.get())
+                .emChamp( ApiParamEnum.EMCHAMP.get())
+                .build();
     }
 
     @Nested
@@ -101,11 +102,11 @@ public class GetRecommendTests {
 
             //when
             List<RecommendPickDto> result = recommendPickFacade
-                    .getRecommend(team, line, ban, emLine, teamChamp, emChamp);
+                    .getRecommend(team, line, recommendRequestDto);
 
             //then
             then(championProcessor).should(times(1)).getCounter(anyString());
-            then(championProcessor).should(times(0)).getTopTier(anyString());
+//            then(championProcessor).should(times(0)).getTopTier(anyString());
             then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
             then(matchProcessor).should(times(1)).tierSort(anyList());
             then(recommendPickMapper).should(times(1)).champResDtoListToRecommendPickDtoList(anyList());
@@ -128,7 +129,7 @@ public class GetRecommendTests {
             //given
             given(championProcessor.getCounter(Mockito.anyString()))
                     .willReturn(counterChampionList);
-            given(championProcessor.getTopTier(Mockito.anyString()))
+            given(championProcessor.getTopTier(Mockito.any()))
                     .willReturn(highTierChampionList);
             given(matchProcessor.removeDisableChamp(Mockito.anyList(), Mockito.anyString()))
                     .willReturn(removeDisableChampionListMinus);
@@ -139,7 +140,7 @@ public class GetRecommendTests {
 
             //when
             List<RecommendPickDto> result = recommendPickFacade
-                    .getRecommend(team, line, ban, emLine, teamChamp, emChamp);
+                    .getRecommend(team, line, recommendRequestDto);
 
             //then
             then(championProcessor).should(times(1)).getCounter(anyString());
@@ -173,7 +174,7 @@ public class GetRecommendTests {
 
             //when
             List<RecommendPickDto> result = recommendPickFacade
-                    .getRecommend(team, line, ban, null, teamChamp, emChamp);
+                    .getRecommend(team, line, recommendRequestDto);
 
             //then
             then(championProcessor).should(times(1)).getTopTier(anyString());
