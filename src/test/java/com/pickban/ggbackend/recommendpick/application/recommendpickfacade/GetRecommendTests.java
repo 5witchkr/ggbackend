@@ -106,7 +106,6 @@ public class GetRecommendTests {
 
             //then
             then(championProcessor).should(times(1)).getCounter(anyString());
-//            then(championProcessor).should(times(0)).getTopTier(anyString());
             then(matchProcessor).should(times(1)).removeDisableChamp(anyList(),anyString());
             then(matchProcessor).should(times(1)).tierSort(anyList());
             then(recommendPickMapper).should(times(1)).champResDtoListToRecommendPickDtoList(anyList());
