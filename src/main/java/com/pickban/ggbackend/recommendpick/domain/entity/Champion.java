@@ -47,7 +47,7 @@ public class Champion {
         this.champName = champName;
         this. position = position;
         this.champTier = champTier;
-        this. champOpScore = champOpScore;
+        this.champOpScore = champOpScore;
         this.champCounterList = champCounterList;
     }
 }

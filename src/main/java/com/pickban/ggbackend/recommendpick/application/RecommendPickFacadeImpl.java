@@ -14,7 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -28,7 +31,6 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
         String disableChampList = recommendRequestDto.getDisabledChampList();
-        System.out.println(disableChampList);
 
         //getCounterOrTopTier without removedChamp
         //todo refactor getCounterOrTopTier -> getCounterOrHighScoreChamp
@@ -49,8 +51,11 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     }
 
     private List<ChampionResponseDto> checkChampCount(List<ChampionResponseDto> removedChampList, List<ChampionResponseDto> championProcessor, String disableChampList) {
-        if (removedChampList.size() < 3)  removedChampList = matchProcessor
-                .removeDisableChamp(championProcessor, disableChampList);
+        if (removedChampList.size() < 3)  removedChampList =
+                Stream.of(removedChampList, matchProcessor.removeDisableChamp(championProcessor, disableChampList))
+                        .flatMap(Collection::stream)
+                        .distinct()
+                        .collect(Collectors.toList());
         return removedChampList;
     }
 
