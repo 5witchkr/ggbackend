@@ -52,7 +52,7 @@ public class RecommendPickApi {
     }
 
     private String checkParam(String ban) {
-        if (ban.isBlank()) return ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+        if (ban==null || ban.isBlank()) return ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
         return ban;
     }
 }
