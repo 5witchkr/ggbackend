@@ -37,8 +37,12 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         List<ChampionResponseDto> removedChampList = matchProcessor
                 .removeDisableChamp(getCounterOrTopTier(line, recommendRequestDto.getEmLine()), disableChampList);
 
+        //todo refactor
         removedChampList = checkChampCount(removedChampList, championProcessor.getTopTier(line), disableChampList);
-        removedChampList = checkChampCount(removedChampList, championProcessor.getMiddleTier(line), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "2Tier"), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "3Tier"), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "4Tier"), disableChampList);
+        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "5Tier"), disableChampList);
 
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
 

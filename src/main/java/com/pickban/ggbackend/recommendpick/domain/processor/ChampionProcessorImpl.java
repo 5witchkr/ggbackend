@@ -40,8 +40,8 @@ public class ChampionProcessorImpl implements ChampionProcessor{
     }
 
     @Override
-    public List<ChampionResponseDto> getMiddleTier(String line) {
-        List<Champion> championList = championRepository.findByPositionAndChampTier(line, "2Tier");
+    public List<ChampionResponseDto> getLineTier(String line, String tier) {
+        List<Champion> championList = championRepository.findByPositionAndChampTier(line, tier);
         return championMapper.championListToChampionResponseDtoList(championList);
     }
 }
