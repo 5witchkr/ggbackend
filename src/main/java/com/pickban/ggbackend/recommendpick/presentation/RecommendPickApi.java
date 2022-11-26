@@ -2,6 +2,7 @@ package com.pickban.ggbackend.recommendpick.presentation;
 
 
 import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
+import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.MockDataSave;
 import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,10 @@ public class RecommendPickApi {
     public ResponseEntity getPick(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
         return new ResponseEntity(recommendPickFacade.getRecommend(team, line,
                 RecommendRequestDto.builder()
-                        .ban(ban)
-                        .emLine(emLine)
-                        .teamChamp(teamChamp)
-                        .emChamp(emChamp)
+                        .ban(checkParam(ban))
+                        .emLine(checkParam(emLine))
+                        .teamChamp(checkParam(teamChamp))
+                        .emChamp(checkParam(emChamp))
                         .build()), HttpStatus.OK);
     }
 
@@ -33,10 +34,10 @@ public class RecommendPickApi {
     public ResponseEntity getPickProgamer(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
         return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line,
                 RecommendRequestDto.builder()
-                        .ban(ban)
-                        .emLine(emLine)
-                        .teamChamp(teamChamp)
-                        .emChamp(emChamp)
+                        .ban(checkParam(ban))
+                        .emLine(checkParam(emLine))
+                        .teamChamp(checkParam(teamChamp))
+                        .emChamp(checkParam(emChamp))
                         .build()), HttpStatus.OK);
     }
 
@@ -48,5 +49,10 @@ public class RecommendPickApi {
     @GetMapping("/dev/{champId}")
     public ResponseEntity findChampions(@PathVariable Long champId) {
         return new ResponseEntity(mockDataSave.findTestData(champId), HttpStatus.OK);
+    }
+
+    private String checkParam(String ban) {
+        if (ban.isBlank()) return ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+        return ban;
     }
 }
