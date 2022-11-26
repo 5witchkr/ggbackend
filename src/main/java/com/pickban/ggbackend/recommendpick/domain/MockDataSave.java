@@ -21,7 +21,7 @@ public class MockDataSave {
         //                "Ahri": "103",
         championRepository.save(new Champion(103L, "Ahri", "mid", "1Tier", 95L, List.of()));
         //                "Akali": "84",
-        championRepository.save(new Champion(84L, "Ahri", "mid", "2Tier", 85L, List.of()));
+        championRepository.save(new Champion(84L, "Akali", "mid", "2Tier", 85L, List.of()));
         //                "Akshan": "166",
         championRepository.save(new Champion(166L, "Akshan", "mid", "3Tier", 71L, List.of()));
         //                "Alistar": "12",

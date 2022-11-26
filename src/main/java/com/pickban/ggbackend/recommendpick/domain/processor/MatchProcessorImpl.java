@@ -1,11 +1,11 @@
 package com.pickban.ggbackend.recommendpick.domain.processor;
 
 
+import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.repository.ChampionRepository;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class MatchProcessorImpl implements MatchProcessor{
     private List<Long> convertDisableChampList(String disableChampList) {
         List<Long> disableChampLists;
         try {
-            disableChampLists = Arrays.stream(disableChampList.split("_"))
+            disableChampLists = Arrays.stream(disableChampList.split(ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP))
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
         } catch (Exception e) {
