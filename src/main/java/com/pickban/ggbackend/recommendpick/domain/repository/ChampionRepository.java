@@ -14,4 +14,6 @@ public interface ChampionRepository extends JpaRepository<Champion, Long> {
 
     List<Champion> findByPositionAndChampTier(String position, String champTier);
 
+    List<Champion> findByPosition(String position);
+
 }
