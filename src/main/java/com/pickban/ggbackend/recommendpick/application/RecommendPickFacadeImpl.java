@@ -1,6 +1,7 @@
 package com.pickban.ggbackend.recommendpick.application;
 
 import com.pickban.ggbackend.recommendpick.application.mapper.RecommendPickMapper;
+import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
@@ -27,6 +28,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
         String disableChampList = recommendRequestDto.getDisabledChampList();
+        System.out.println(disableChampList);
 
         //getCounterOrTopTier without removedChamp
         //todo refactor getCounterOrTopTier -> getCounterOrHighScoreChamp
@@ -54,7 +56,7 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     private List<ChampionResponseDto> getCounterOrTopTier(String line, String emLine) {
         List<ChampionResponseDto> champDtoList;
-        if (emLine.equals("0")) {
+        if (emLine.equals(ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE)) {
             champDtoList = championProcessor.getTopTier(line);
         } else {
             champDtoList = championProcessor.getCounter(emLine);
