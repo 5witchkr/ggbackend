@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class RecommendPickDto {
-    private Long champId;
-    private String champTier;
+    private Long championId;
+    private String championTier;
 }
