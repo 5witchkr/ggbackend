@@ -23,10 +23,10 @@ public class RecommendPickApi {
     public ResponseEntity getPick(@RequestParam String team, String line, String bans, String emLine, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommend(team, line,
                 RecommendRequestDto.builder()
-                        .ban(checkParam(bans))
+                        .bans(checkParam(bans))
                         .emLine(checkParam(emLine))
-                        .teamChamp(checkParam(picks))
-                        .emChamp(checkParam(emPicks))
+                        .picks(checkParam(picks))
+                        .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
     }
 
@@ -34,10 +34,10 @@ public class RecommendPickApi {
     public ResponseEntity getPickProgamer(@RequestParam String team, String line, String bans, String emLine, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line,
                 RecommendRequestDto.builder()
-                        .ban(checkParam(bans))
+                        .bans(checkParam(bans))
                         .emLine(checkParam(emLine))
-                        .teamChamp(checkParam(picks))
-                        .emChamp(checkParam(emPicks))
+                        .picks(checkParam(picks))
+                        .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
     }
 
