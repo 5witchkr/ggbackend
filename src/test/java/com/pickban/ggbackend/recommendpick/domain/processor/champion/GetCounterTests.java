@@ -43,12 +43,12 @@ public class GetCounterTests {
         final String emLineChamp = "266";
 
         final Champion champion = Champion.builder()
-                .champId(266L).champName("Aatrox").champCounterList(List.of(1L,2L,3L)).build();
+                .championId(266L).championName("Aatrox").counters(List.of(1L,2L,3L)).build();
         final ChampionResponseDto championResponseDto = ChampionResponseDto.builder().build();
 
         return Stream.of(
                 DynamicTest.dynamicTest("카운터 챔피언을 불러온다.", () -> {
-                    given(championRepository.findByChampId(Mockito.anyLong()))
+                    given(championRepository.findByChampionId(Mockito.anyLong()))
                             .willReturn(Optional.ofNullable(champion));
                     given(championMapper.championToChampionResponseDto(Mockito.any(Champion.class)))
                             .willReturn(championResponseDto);
@@ -56,7 +56,7 @@ public class GetCounterTests {
                     championProcessor.getCounter(emLineChamp);
 
                     then(championRepository).should(times(4))
-                            .findByChampId(Mockito.anyLong());
+                            .findByChampionId(Mockito.anyLong());
                     then(championMapper).should(times(3))
                             .championToChampionResponseDto(Mockito.any(Champion.class));
 
