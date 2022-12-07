@@ -108,8 +108,8 @@ public class RecommendPickApiTests {
                                     ),
                                     responseFields(
                                             fieldWithPath("[]").type(JsonFieldType.ARRAY).description("추천 챔피언 목록"),
-                                            fieldWithPath("[].champId").type(JsonFieldType.NUMBER).description("추천 챔피언 ID"),
-                                            fieldWithPath("[].champTier").type(JsonFieldType.STRING).description("추천 챔피언 티어")
+                                            fieldWithPath("[].championId").type(JsonFieldType.NUMBER).description("추천 챔피언 ID"),
+                                            fieldWithPath("[].championTier").type(JsonFieldType.STRING).description("추천 챔피언 티어")
                                     )
                             ));
 
@@ -146,11 +146,11 @@ public class RecommendPickApiTests {
                                             ),
                                             responseFields(
                                                     fieldWithPath("[]").type(JsonFieldType.ARRAY).description("추천 프로게이머 목록"),
-                                                    fieldWithPath("[].proName").type(JsonFieldType.STRING).description("프로게이머 이름"),
-                                                    fieldWithPath("[].proNickname").type(JsonFieldType.STRING).description("프로게이머 닉네임"),
+                                                    fieldWithPath("[].progamerName").type(JsonFieldType.STRING).description("프로게이머 이름"),
+                                                    fieldWithPath("[].progamerNickname").type(JsonFieldType.STRING).description("프로게이머 닉네임"),
                                                     fieldWithPath("[].recommendPickDto").type(JsonFieldType.OBJECT).description("프로게이머 추천 챔피언"),
-                                                    fieldWithPath("[].recommendPickDto.champId").type(JsonFieldType.NUMBER).description("프로게이머 챔피언 ID"),
-                                                    fieldWithPath("[].recommendPickDto.champTier").type(JsonFieldType.STRING).description("프로게이머 챔피언 티어")
+                                                    fieldWithPath("[].recommendPickDto.championId").type(JsonFieldType.NUMBER).description("프로게이머 챔피언 ID"),
+                                                    fieldWithPath("[].recommendPickDto.championTier").type(JsonFieldType.STRING).description("프로게이머 챔피언 티어")
                                             )
                                     ));
 
