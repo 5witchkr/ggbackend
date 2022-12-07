@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public interface ChampionRepository extends JpaRepository<Champion, Long> {
 
-    Optional<Champion> findByChampName(String champName);
+    Optional<Champion> findByChampionName(String championName);
 
-    Optional<Champion> findByChampId(Long champId);
+    Optional<Champion> findByChampionId(Long championId);
 
-    List<Champion> findByPositionAndChampTier(String position, String champTier);
+    List<Champion> findByPositionAndChampionTier(String position, String championTier);
 
     List<Champion> findByPosition(String position);
 
