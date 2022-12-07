@@ -5,9 +5,9 @@ public enum ApiParamEnum {
     TEAM("B"),  //Blue팀
     LINE("mid"),    //미드라인
     EMLINE("90"),   //빅토르
-    TEAMCHAMP("91_134"),    //세주아니, 카밀
-    EMCHAMP("147_73"),  //아펠리오스, 리신
-    BAN("124_51_114_47");    //바드, 아칼리, 아트록스, 이즈리얼
+    PICKS("91_134"),    //세주아니, 카밀
+    EM_PICKS("147_73"),  //아펠리오스, 리신
+    BANS("124_51_114_47");    //바드, 아칼리, 아트록스, 이즈리얼
 
     private final String value;
 
