@@ -20,22 +20,22 @@ public class RecommendPickApi {
     private final MockDataSave mockDataSave;
 
     @GetMapping("")
-    public ResponseEntity getPick(@RequestParam String team, String line, String bans, String emLine, String picks, String emPicks) {
+    public ResponseEntity getPick(@RequestParam String team, String line, String bans, String emBans, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommend(team, line,
                 RecommendRequestDto.builder()
                         .bans(checkParam(bans))
-                        .emLine(checkParam(emLine))
+                        .emBans(checkParam(emBans))
                         .picks(checkParam(picks))
                         .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
     }
 
     @GetMapping("/progamer")
-    public ResponseEntity getPickProgamer(@RequestParam String team, String line, String bans, String emLine, String picks, String emPicks) {
+    public ResponseEntity getPickProgamer(@RequestParam String team, String line, String bans, String emBans, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line,
                 RecommendRequestDto.builder()
                         .bans(checkParam(bans))
-                        .emLine(checkParam(emLine))
+                        .emBans(checkParam(emBans))
                         .picks(checkParam(picks))
                         .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
