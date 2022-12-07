@@ -32,17 +32,17 @@ public class TierSortTests {
 
         final List<ChampionResponseDto> beforeTierSort = new ArrayList<>(
                 List.of(
-                        ChampionResponseDto.builder().champOpScore(90L).build(),
-                        ChampionResponseDto.builder().champOpScore(100L).build(),
-                        ChampionResponseDto.builder().champOpScore(80L).build(),
-                        ChampionResponseDto.builder().champOpScore(77L).build()
+                        ChampionResponseDto.builder().opScore(90L).build(),
+                        ChampionResponseDto.builder().opScore(100L).build(),
+                        ChampionResponseDto.builder().opScore(80L).build(),
+                        ChampionResponseDto.builder().opScore(77L).build()
                 )
         );
         final List<ChampionResponseDto> afterTierSort = new ArrayList<>(
                 List.of(
-                        ChampionResponseDto.builder().champOpScore(100L).build(),
-                        ChampionResponseDto.builder().champOpScore(90L).build(),
-                        ChampionResponseDto.builder().champOpScore(80L).build()
+                        ChampionResponseDto.builder().opScore(100L).build(),
+                        ChampionResponseDto.builder().opScore(90L).build(),
+                        ChampionResponseDto.builder().opScore(80L).build()
                 )
         );
 
@@ -50,10 +50,10 @@ public class TierSortTests {
                 DynamicTest.dynamicTest("점수(OPScore)순으로 정렬한다.", () -> {
                     List<ChampionResponseDto> result = matchProcessor.tierSort(beforeTierSort);
 
-                    assertThat(result.get(0).getChampOpScore())
-                            .isEqualTo(afterTierSort.get(0).getChampOpScore());
-                    assertThat(result.get(1).getChampOpScore())
-                            .isEqualTo(afterTierSort.get(1).getChampOpScore());
+                    assertThat(result.get(0).getOpScore())
+                            .isEqualTo(afterTierSort.get(0).getOpScore());
+                    assertThat(result.get(1).getOpScore())
+                            .isEqualTo(afterTierSort.get(1).getOpScore());
 
                 }),
 

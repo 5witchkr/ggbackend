@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ProgamerPickDto {
-    private String proName;
-    private String proNickname;
+    private String progamerName;
+    private String progamerNickname;
     private RecommendPickDto recommendPickDto;
 }

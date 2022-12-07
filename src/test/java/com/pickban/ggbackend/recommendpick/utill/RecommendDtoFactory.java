@@ -15,8 +15,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoLissandra() {
         return RecommendPickDto.builder()
-                .champId(113L)
-                .champTier("1Tier")
+                .championId(113L)
+                .championTier("1Tier")
                 .build();
     }
 
@@ -27,8 +27,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoAhri() {
         return RecommendPickDto.builder()
-                .champId(89L)
-                .champTier("2Tier")
+                .championId(89L)
+                .championTier("2Tier")
                 .build();
     }
 
@@ -39,8 +39,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoSylas() {
         return RecommendPickDto.builder()
-                .champId(143L)
-                .champTier("1Tier")
+                .championId(143L)
+                .championTier("1Tier")
                 .build();
     }
 
@@ -50,8 +50,8 @@ public class RecommendDtoFactory {
      */
     public RecommendPickDto createRecommendPickDtoAzir() {
         return RecommendPickDto.builder()
-                .champId(121L)
-                .champTier("2Tier")
+                .championId(121L)
+                .championTier("2Tier")
                 .build();
     }
 
@@ -62,8 +62,8 @@ public class RecommendDtoFactory {
      */
     public ProgamerPickDto createProgamerPickDtoFaker() {
         return ProgamerPickDto.builder()
-                .proName("Faker")
-                .proNickname("hide on bush")
+                .progamerName("Faker")
+                .progamerNickname("hide on bush")
                 .recommendPickDto(createRecommendPickDtoSylas())
                 .build();
     }
@@ -75,8 +75,8 @@ public class RecommendDtoFactory {
      */
     public ProgamerPickDto createProgamerPickDtoChovy() {
         return ProgamerPickDto.builder()
-                .proName("Chovy")
-                .proNickname("Gen.G Chovy")
+                .progamerName("Chovy")
+                .progamerNickname("Gen.G Chovy")
                 .recommendPickDto(createRecommendPickDtoAzir())
                 .build();
     }
@@ -111,13 +111,13 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createCounterChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(89L).champTier("2Tier").build();
+                .builder().championId(89L).championTier("2Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().champId(113L).champTier("1Tier").build();
+                .builder().championId(113L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto4 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
 
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3, championResponseDto4);
     }
@@ -130,11 +130,11 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createHighTierChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(113L).champTier("1Tier").build();
+                .builder().championId(113L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().champId(51L).champTier("1Tier").build();
+                .builder().championId(51L).championTier("1Tier").build();
 
         return List.of(championResponseDto1,championResponseDto2, championResponseDto3);
     }
@@ -146,11 +146,11 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createRemoveDisableChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().champId(113L).champTier("1Tier").build();
+                .builder().championId(113L).championTier("1Tier").build();
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
     }
 
@@ -161,9 +161,9 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createRemoveDisableChampionListMinus() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
         return List.of(championResponseDto1, championResponseDto2);
     }
 
@@ -174,11 +174,11 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createSortTierChampionList() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3);
     }
 
@@ -190,17 +190,17 @@ public class RecommendDtoFactory {
      */
     public List<ChampionResponseDto> createChampionListForInputRemoveTest() {
         ChampionResponseDto championResponseDto1 = ChampionResponseDto
-                .builder().champId(1L).champTier("1Tier").build();
+                .builder().championId(1L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto2 = ChampionResponseDto
-                .builder().champId(3L).champTier("1Tier").build();
+                .builder().championId(3L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto3 = ChampionResponseDto
-                .builder().champId(6L).champTier("1Tier").build();
+                .builder().championId(6L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto4 = ChampionResponseDto
-                .builder().champId(143L).champTier("1Tier").build();
+                .builder().championId(143L).championTier("1Tier").build();
         ChampionResponseDto championResponseDto5 = ChampionResponseDto
-                .builder().champId(121L).champTier("2Tier").build();
+                .builder().championId(121L).championTier("2Tier").build();
         ChampionResponseDto championResponseDto6 = ChampionResponseDto
-                .builder().champId(113L).champTier("1Tier").build();
+                .builder().championId(113L).championTier("1Tier").build();
         return List.of(championResponseDto1, championResponseDto2, championResponseDto3, championResponseDto4, championResponseDto5, championResponseDto6);
     }
 }

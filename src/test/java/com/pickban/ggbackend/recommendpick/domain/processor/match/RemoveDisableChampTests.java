@@ -48,8 +48,8 @@ public class RemoveDisableChampTests {
                             matchProcessor.removeDisableChamp(championResponseDtoList, disableChampList);
 
 
-                    assertThat(resultList.get(0).getChampId(), equalTo(removedChampList.get(0).getChampId()));
-                    assertThat(resultList.get(2).getChampId(), equalTo(removedChampList.get(2).getChampId()));
+                    assertThat(resultList.get(0).getChampionId(), equalTo(removedChampList.get(0).getChampionId()));
+                    assertThat(resultList.get(2).getChampionId(), equalTo(removedChampList.get(2).getChampionId()));
                     assertThat(resultList.size(), equalTo(removedChampList.size()));
                 }),
                 DynamicTest.dynamicTest("성공케이스: 비활성화 챔피언이 없을경우(isBlank) 그대로 리턴해준다.", ()-> {
@@ -59,7 +59,7 @@ public class RemoveDisableChampTests {
                             matchProcessor.removeDisableChamp(championResponseDtoList, disableChampListIsBlank);
 
 
-                    assertThat(resultList.get(0).getChampId(), equalTo(championResponseDtoList.get(0).getChampId()));
+                    assertThat(resultList.get(0).getChampionId(), equalTo(championResponseDtoList.get(0).getChampionId()));
                     assertThat(resultList.size(), equalTo(championResponseDtoList.size()));
                 }),
                 DynamicTest.dynamicTest("실패케이스: 비활성화 챔피언이 없을경우(Null) 예외를 던져준다.", ()-> {

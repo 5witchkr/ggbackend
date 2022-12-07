@@ -9,29 +9,29 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ChampionResponseDto {
-    private Long champId;
-    private String champTier;
-    private Long champOpScore;
+    private Long championId;
+    private String championTier;
+    private Long opScore;
 
-    public ChampionResponseDto(Long champId) {
-        this.champId = champId;
+    public ChampionResponseDto(Long championId) {
+        this.championId = championId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o instanceof ChampionResponseDto) {
-            return champId.equals(((ChampionResponseDto) o).champId);
+            return championId.equals(((ChampionResponseDto) o).championId);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return champId.hashCode();
+        return championId.hashCode();
     }
 
     @Override
     public String toString() {
-        return String.valueOf(champId);
+        return String.valueOf(championId);
     }
 }

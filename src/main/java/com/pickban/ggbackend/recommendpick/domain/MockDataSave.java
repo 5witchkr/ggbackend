@@ -6,7 +6,6 @@ import com.pickban.ggbackend.recommendpick.domain.repository.ChampionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -341,6 +340,6 @@ public class MockDataSave {
     }
 
     public Champion findTestData(Long champId) {
-        return championRepository.findByChampId(champId).orElseThrow();
+        return championRepository.findByChampionId(champId).orElseThrow();
     }
 }
