@@ -69,10 +69,10 @@ public class GetRecommendTests {
         line = ApiParamEnum.LINE.get();
         recommendRequestDto = RecommendRequestDto
                 .builder()
-                .ban(ApiParamEnum.BAN.get())
-                .emLine(ApiParamEnum.EMLINE.get())
-                .teamChamp(ApiParamEnum.TEAMCHAMP.get())
-                .emChamp( ApiParamEnum.EMCHAMP.get())
+                .bans(ApiParamEnum.BANS.get())
+                .emLine(ApiParamEnum.EM_BANS.get())
+                .picks(ApiParamEnum.PICKS.get())
+                .emPicks( ApiParamEnum.EM_PICKS.get())
                 .build();
     }
 

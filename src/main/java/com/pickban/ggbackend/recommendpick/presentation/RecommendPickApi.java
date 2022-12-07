@@ -20,24 +20,24 @@ public class RecommendPickApi {
     private final MockDataSave mockDataSave;
 
     @GetMapping("")
-    public ResponseEntity getPick(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
+    public ResponseEntity getPick(@RequestParam String team, String line, String bans, String emBans, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommend(team, line,
                 RecommendRequestDto.builder()
-                        .ban(checkParam(ban))
-                        .emLine(checkParam(emLine))
-                        .teamChamp(checkParam(teamChamp))
-                        .emChamp(checkParam(emChamp))
+                        .bans(checkParam(bans))
+                        .emBans(checkParam(emBans))
+                        .picks(checkParam(picks))
+                        .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
     }
 
     @GetMapping("/progamer")
-    public ResponseEntity getPickProgamer(@RequestParam String team, String line, String ban, String emLine, String teamChamp, String emChamp) {
+    public ResponseEntity getPickProgamer(@RequestParam String team, String line, String bans, String emBans, String picks, String emPicks) {
         return new ResponseEntity(recommendPickFacade.getRecommendProgamer(team, line,
                 RecommendRequestDto.builder()
-                        .ban(checkParam(ban))
-                        .emLine(checkParam(emLine))
-                        .teamChamp(checkParam(teamChamp))
-                        .emChamp(checkParam(emChamp))
+                        .bans(checkParam(bans))
+                        .emBans(checkParam(emBans))
+                        .picks(checkParam(picks))
+                        .emPicks(checkParam(emPicks))
                         .build()), HttpStatus.OK);
     }
 
@@ -51,8 +51,8 @@ public class RecommendPickApi {
         return new ResponseEntity(mockDataSave.findTestData(champId), HttpStatus.OK);
     }
 
-    private String checkParam(String ban) {
-        if (ban==null || ban.isBlank()) return ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
-        return ban;
+    private String checkParam(String championId) {
+        if (championId==null || championId.isBlank()) return ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+        return championId;
     }
 }

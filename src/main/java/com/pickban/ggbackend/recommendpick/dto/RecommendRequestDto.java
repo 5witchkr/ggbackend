@@ -14,18 +14,18 @@ import lombok.NoArgsConstructor;
 public class RecommendRequestDto {
 
     @Builder.Default
-    private String ban = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+    private String bans = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
     @Builder.Default
     private String emLine = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
     @Builder.Default
-    private String teamChamp = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+    private String picks = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
     @Builder.Default
-    private String emChamp = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+    private String emPicks = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
 
     public String getDisabledChampList() {
-        return  this.ban+ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
+        return  this.bans +ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
                 +this.emLine+ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
-                +this.teamChamp+ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
-                +this.emChamp;
+                +this.picks +ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
+                +this.emPicks;
     }
 }
