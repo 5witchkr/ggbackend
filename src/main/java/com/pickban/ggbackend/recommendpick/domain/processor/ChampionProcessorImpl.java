@@ -22,14 +22,13 @@ public class ChampionProcessorImpl implements ChampionProcessor{
     public List<ChampionResponseDto> getCounter(String emLineChamp) {
         Champion champion = championRepository.findByChampionId(Long.valueOf(emLineChamp))
                 .orElseThrow(() -> new NullPointerException("Not Found Champion!!"));
+                
         List<Long> counterList = champion.getCounters();
         List<ChampionResponseDto> championResponseDtoList = new ArrayList<>();
-        counterList.forEach(champId -> {
-            championResponseDtoList.add(
-                    championMapper.championToChampionResponseDto(
-                            championRepository.findByChampionId(champId)
-                                    .orElseThrow(() -> new NullPointerException("Not Found Champion!!!"))));
-        });
+        counterList.forEach(champId -> championResponseDtoList.add(
+                championMapper.championToChampionResponseDto(
+                        championRepository.findByChampionId(champId)
+                                .orElseThrow(() -> new NullPointerException("Not Found Champion!!!")))));
         return championResponseDtoList;
     }
 

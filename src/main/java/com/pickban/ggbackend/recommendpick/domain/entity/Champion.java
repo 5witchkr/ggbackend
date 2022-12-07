@@ -1,10 +1,7 @@
 package com.pickban.ggbackend.recommendpick.domain.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Champion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
