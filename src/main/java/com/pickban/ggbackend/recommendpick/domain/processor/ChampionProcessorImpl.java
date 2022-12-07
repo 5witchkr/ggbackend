@@ -20,14 +20,14 @@ public class ChampionProcessorImpl implements ChampionProcessor{
 
     @Override
     public List<ChampionResponseDto> getCounter(String emLineChamp) {
-        Champion champion = championRepository.findByChampId(Long.valueOf(emLineChamp))
+        Champion champion = championRepository.findByChampionId(Long.valueOf(emLineChamp))
                 .orElseThrow(() -> new NullPointerException("Not Found Champion!!"));
-        List<Long> counterList = champion.getChampCounterList();
+        List<Long> counterList = champion.getCounters();
         List<ChampionResponseDto> championResponseDtoList = new ArrayList<>();
         counterList.forEach(champId -> {
             championResponseDtoList.add(
                     championMapper.championToChampionResponseDto(
-                            championRepository.findByChampId(champId)
+                            championRepository.findByChampionId(champId)
                                     .orElseThrow(() -> new NullPointerException("Not Found Champion!!!"))));
         });
         return championResponseDtoList;
@@ -35,13 +35,13 @@ public class ChampionProcessorImpl implements ChampionProcessor{
 
     @Override
     public List<ChampionResponseDto> getTopTier(String line) {
-        List<Champion> championList = championRepository.findByPositionAndChampTier(line, "1Tier");
+        List<Champion> championList = championRepository.findByPositionAndChampionTier(line, "1Tier");
         return championMapper.championListToChampionResponseDtoList(championList);
     }
 
     @Override
     public List<ChampionResponseDto> getLineTier(String line, String tier) {
-        List<Champion> championList = championRepository.findByPositionAndChampTier(line, tier);
+        List<Champion> championList = championRepository.findByPositionAndChampionTier(line, tier);
         return championMapper.championListToChampionResponseDtoList(championList);
     }
 }

@@ -1,4 +1,4 @@
-package com.pickban.ggbackend.recommendpick.util;
+package com.pickban.ggbackend.recommendpick.utill;
 
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;

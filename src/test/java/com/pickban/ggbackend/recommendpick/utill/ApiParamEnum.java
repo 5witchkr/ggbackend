@@ -1,4 +1,4 @@
-package com.pickban.ggbackend.recommendpick.util;
+package com.pickban.ggbackend.recommendpick.utill;
 
 public enum ApiParamEnum {
 

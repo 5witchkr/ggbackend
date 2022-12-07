@@ -21,7 +21,7 @@ public class MatchProcessorImpl implements MatchProcessor{
     @Override
     public List<ChampionResponseDto> tierSort(List<ChampionResponseDto> championResponseDtoList) {
         List<ChampionResponseDto> championResponseDto = championResponseDtoList.stream()
-                .sorted((a, b) -> (int) (b.getChampOpScore() - a.getChampOpScore()))
+                .sorted((a, b) -> (int) (b.getOpScore() - a.getOpScore()))
                 .collect(Collectors.toList());
         return championResponseDto.subList(0,3);
     }
@@ -29,7 +29,7 @@ public class MatchProcessorImpl implements MatchProcessor{
     @Override
     public List<ChampionResponseDto> removeDisableChamp(List<ChampionResponseDto> championResponseDtoList, String disableChampList) {
         return championResponseDtoList.stream()
-                .filter(champ -> !convertDisableChampList(disableChampList).contains(champ.getChampId()))
+                .filter(champ -> !convertDisableChampList(disableChampList).contains(champ.getChampionId()))
                 .collect(Collectors.toList());
     }
 
