@@ -25,8 +25,8 @@ public class Position {
     private String position;
 
     @Column
-    private String champTier;
+    private String championTier;
 
     @Column
-    private Long champOpScore;
+    private Long opScore;
 }
