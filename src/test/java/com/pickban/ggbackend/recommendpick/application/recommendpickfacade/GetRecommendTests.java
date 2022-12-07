@@ -70,7 +70,7 @@ public class GetRecommendTests {
         recommendRequestDto = RecommendRequestDto
                 .builder()
                 .bans(ApiParamEnum.BANS.get())
-                .emLine(ApiParamEnum.EMLINE.get())
+                .emLine(ApiParamEnum.EM_BANS.get())
                 .picks(ApiParamEnum.PICKS.get())
                 .emPicks( ApiParamEnum.EM_PICKS.get())
                 .build();

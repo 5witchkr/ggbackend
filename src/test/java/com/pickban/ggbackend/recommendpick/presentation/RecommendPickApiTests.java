@@ -70,10 +70,10 @@ public class RecommendPickApiTests {
 
         final String team = ApiParamEnum.TEAM.get();
         final String line = ApiParamEnum.LINE.get();
-        final String emLine = ApiParamEnum.EMLINE.get();
+        final String bans = ApiParamEnum.BANS.get();
+        final String emBans = ApiParamEnum.EM_BANS.get();
         final String picks = ApiParamEnum.PICKS.get();
         final String emPicks = ApiParamEnum.EM_PICKS.get();
-        final String bans = ApiParamEnum.BANS.get();
 
         return Stream.of(
                 DynamicTest.dynamicTest("밴픽 추천 리스트를 조회한다.",
@@ -87,7 +87,7 @@ public class RecommendPickApiTests {
                                     .param("team", team)
                                     .param("line", line)
                                     .param("bans", bans)
-                                    .param("emLine", emLine)
+                                    .param("emBans", emBans)
                                     .param("picks", picks)
                                     .param("emPicks",emPicks)
                                     .accept(MediaType.APPLICATION_JSON)
@@ -101,8 +101,8 @@ public class RecommendPickApiTests {
                                     requestParameters(
                                             parameterWithName("team").description("팀 진영 (필수입력) value=[B, R]"),
                                             parameterWithName("line").description("선택라인 (필수입력) value=[top, jg, mid, adc, sup]"),
-                                            parameterWithName("bans").description("밴 챔피언목록 (필수입력)"),
-                                            parameterWithName("emLine").description("상대라이너 챔피언 (선택입력)").optional(),
+                                            parameterWithName("bans").description("아군 밴 챔피언목록 (선택입력)").optional(),
+                                            parameterWithName("emBans").description("적군 밴 챔피언목록 (선택입력)").optional(),
                                             parameterWithName("picks").description("아군 챔피언목록 (선택입력)").optional(),
                                             parameterWithName("emPicks").description("적군 챔피언목록 (선택입력)").optional()
                                     ),
@@ -125,7 +125,7 @@ public class RecommendPickApiTests {
                                             .param("team", team)
                                             .param("line", line)
                                             .param("bans", bans)
-                                            .param("emLine", emLine)
+                                            .param("emBans", emBans)
                                             .param("picks", picks)
                                             .param("emPicks",emPicks)
                                             .accept(MediaType.APPLICATION_JSON)
@@ -139,8 +139,8 @@ public class RecommendPickApiTests {
                                             requestParameters(
                                                     parameterWithName("team").description("팀 진영 (필수입력) value=[B, R]"),
                                                     parameterWithName("line").description("선택라인 (필수입력) value=[top, jg, mid, adc, sup]"),
-                                                    parameterWithName("bans").description("밴 챔피언목록 (필수입력)"),
-                                                    parameterWithName("emLine").description("상대라이너 챔피언 (선택입력)").optional(),
+                                                    parameterWithName("bans").description("아군 밴 챔피언목록 (선택입력)").optional(),
+                                                    parameterWithName("emBans").description("적군 밴 챔피언목록 (선택입력)").optional(),
                                                     parameterWithName("picks").description("아군 챔피언목록 (선택입력)").optional(),
                                                     parameterWithName("emPicks").description("적군 챔피언목록 (선택입력)").optional()
                                             ),
