@@ -21,29 +21,29 @@ public class Champion {
     private Long Id;
 
     @Column
-    private Long champId;
+    private Long championId;
 
     @Column
-    private String champName;
+    private String championName;
 
     @Column
     private String position;
 
     @Column
-    private String champTier;
+    private String championTier;
 
     @Column
-    private Long champOpScore;
+    private Long opScore;
 
     @ElementCollection
-    private List<Long> champCounterList;
+    private List<Long> counters;
 
-    public Champion(Long champId, String champName, String position, String champTier, Long champOpScore, List<Long> champCounterList) {
-        this.champId = champId;
-        this.champName = champName;
+    public Champion(Long championId, String championName, String position, String championTier, Long opScore, List<Long> counters) {
+        this.championId = championId;
+        this.championName = championName;
         this.position = position;
-        this.champTier = champTier;
-        this.champOpScore = champOpScore;
-        this.champCounterList = champCounterList;
+        this.championTier = championTier;
+        this.opScore = opScore;
+        this.counters = counters;
     }
 }
