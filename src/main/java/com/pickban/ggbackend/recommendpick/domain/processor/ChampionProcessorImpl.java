@@ -43,4 +43,10 @@ public class ChampionProcessorImpl implements ChampionProcessor{
         List<Champion> championList = championRepository.findByPositionAndChampionTier(line, tier);
         return championMapper.championListToChampionResponseDtoList(championList);
     }
+
+    @Override
+    public List<ChampionResponseDto> getLineChampion(String line) {
+        List<Champion> championList = championRepository.findByPosition(line);
+        return championMapper.championListToChampionResponseDtoList(championList);
+    }
 }

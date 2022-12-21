@@ -26,4 +26,6 @@ public interface ChampionProcessor {
      * @return List<ChampionResponseDto>
      */
     List<ChampionResponseDto> getLineTier(String line, String Tier);
+
+    List<ChampionResponseDto> getLineChampion(String line);
 }
