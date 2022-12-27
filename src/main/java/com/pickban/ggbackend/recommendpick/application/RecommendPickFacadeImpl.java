@@ -1,7 +1,6 @@
 package com.pickban.ggbackend.recommendpick.application;
 
 import com.pickban.ggbackend.recommendpick.application.mapper.RecommendPickMapper;
-import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
@@ -41,6 +40,10 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
         return null;
     }
 
+
+    /**
+     * @deprecated
+     */
     private List<ChampionResponseDto> checkChampCount(List<ChampionResponseDto> removedChampList, List<ChampionResponseDto> championProcessor, String disableChampList) {
         if (removedChampList.size() < 3)  removedChampList =
                 Stream.of(removedChampList, matchProcessor.removeDisableChamp(championProcessor, disableChampList))
