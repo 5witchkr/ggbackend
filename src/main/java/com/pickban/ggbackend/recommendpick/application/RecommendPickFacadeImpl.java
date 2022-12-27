@@ -30,16 +30,9 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
         String disableChampList = recommendRequestDto.getDisabledChampList();
-
-        //todo refactor
-        List<ChampionResponseDto> removedChampList = matchProcessor.removeDisableChamp(championProcessor.getTopTier(line), disableChampList);
-        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "2Tier"), disableChampList);
-        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "3Tier"), disableChampList);
-        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "4Tier"), disableChampList);
-        removedChampList = checkChampCount(removedChampList, championProcessor.getLineTier(line, "5Tier"), disableChampList);
-
+        List<ChampionResponseDto> removedChampList =
+                matchProcessor.removeDisableChamp(championProcessor.getLineChampion(line), disableChampList);
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
-
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
     }
 
