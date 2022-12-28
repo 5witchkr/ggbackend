@@ -1,15 +1,12 @@
 package com.pickban.ggbackend.recommendpick.enummodel;
 
-public enum TierEnum {
-    TIER1("1Tier"),
-    TIER2("2Tier"),
-    TIER3("3Tier"),
-    TIER4("4Tier"),
-    TIER5("5Tier");
+public enum ExceptionMsgEnum {
+    NOT_FOUND("Not Found Champion!!"),
+    VALIDATE_ERROR_DISABLE_CHAMP_LIST("Validate Error DisableChampList");
 
     private final String value;
 
-    TierEnum(String value) {
+    ExceptionMsgEnum(String value) {
         this.value = value;
     }
 
