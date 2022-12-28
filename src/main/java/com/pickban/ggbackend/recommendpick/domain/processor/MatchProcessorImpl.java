@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MatchProcessorImpl implements MatchProcessor{
 
-    private final ChampionRepository championRepository;
-
     @Override
     public List<ChampionResponseDto> tierSort(List<ChampionResponseDto> championResponseDtoList) {
         List<ChampionResponseDto> championResponseDto = championResponseDtoList.stream()
