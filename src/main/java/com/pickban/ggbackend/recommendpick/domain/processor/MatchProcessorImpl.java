@@ -2,9 +2,8 @@ package com.pickban.ggbackend.recommendpick.domain.processor;
 
 
 import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
-import com.pickban.ggbackend.recommendpick.domain.repository.ChampionRepository;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
-import lombok.RequiredArgsConstructor;
+import com.pickban.ggbackend.recommendpick.enummodel.ExceptionMsgEnum;
 import org.springframework.stereotype.Component;
 
 
@@ -13,10 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class MatchProcessorImpl implements MatchProcessor{
-
-    private final ChampionRepository championRepository;
 
     @Override
     public List<ChampionResponseDto> tierSort(List<ChampionResponseDto> championResponseDtoList) {
@@ -40,7 +36,7 @@ public class MatchProcessorImpl implements MatchProcessor{
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException("Validate Error DisableChampList");
+            throw new IllegalArgumentException(ExceptionMsgEnum.VALIDATE_ERROR_DISABLE_CHAMP_LIST.getValue());
         }
         return disableChampLists;
     }
