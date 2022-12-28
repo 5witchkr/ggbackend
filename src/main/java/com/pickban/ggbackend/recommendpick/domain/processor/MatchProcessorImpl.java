@@ -3,6 +3,7 @@ package com.pickban.ggbackend.recommendpick.domain.processor;
 
 import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
+import com.pickban.ggbackend.recommendpick.enummodel.ExceptionMsgEnum;
 import org.springframework.stereotype.Component;
 
 
@@ -35,7 +36,7 @@ public class MatchProcessorImpl implements MatchProcessor{
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException("Validate Error DisableChampList");
+            throw new IllegalArgumentException(ExceptionMsgEnum.VALIDATE_ERROR_DISABLE_CHAMP_LIST.getValue());
         }
         return disableChampLists;
     }
