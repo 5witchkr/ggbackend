@@ -8,10 +8,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class Champion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +34,7 @@ public class Champion {
     @ElementCollection
     private List<Long> counters;
 
+    @Builder
     public Champion(Long championId, String championName, String position, String championTier, Long opScore, List<Long> counters) {
         this.championId = championId;
         this.championName = championName;
@@ -44,4 +43,5 @@ public class Champion {
         this.opScore = opScore;
         this.counters = counters;
     }
+
 }
