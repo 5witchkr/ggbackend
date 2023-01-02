@@ -1,18 +1,14 @@
 package com.pickban.ggbackend.recommendpick.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Position {
 
     @Id
@@ -29,4 +25,12 @@ public class Position {
 
     @Column
     private Long opScore;
+
+    @Builder
+    public Position(Long id, String position, String championTier, Long opScore) {
+        this.Id = id;
+        this.position = position;
+        this.championTier = championTier;
+        this.opScore = opScore;
+    }
 }
