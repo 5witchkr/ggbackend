@@ -12,8 +12,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = NullPointerException.class)
-    protected ResponseEntity<Object> nullPoint(NullPointerException nullPointerException) {
-        log.error("throw NullPointException : {}", nullPointerException.getMessage());
+    protected ResponseEntity<Object> handlingNullPointer(NullPointerException nullPointerException) {
+        log.error("throw NullPointerException : {}", nullPointerException.getMessage());
         return new ResponseEntity<>(nullPointerException.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    protected ResponseEntity<Object> handlingIllegalArg(IllegalArgumentException illegalArgumentException) {
+        log.error("throw IllegalArgumentException : {}", illegalArgumentException.getMessage());
+        return new ResponseEntity<>(illegalArgumentException.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
