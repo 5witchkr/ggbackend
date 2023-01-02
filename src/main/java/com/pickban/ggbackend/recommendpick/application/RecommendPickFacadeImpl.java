@@ -8,7 +8,6 @@ import com.pickban.ggbackend.recommendpick.dto.ProgamerPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendPickDto;
 import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
@@ -19,12 +18,17 @@ import java.util.stream.Stream;
 
 
 @Service
-@RequiredArgsConstructor
 public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     private final ChampionProcessor championProcessor;
     private final MatchProcessor matchProcessor;
     private final RecommendPickMapper recommendPickMapper;
+
+    public RecommendPickFacadeImpl(ChampionProcessor championProcessor, MatchProcessor matchProcessor, RecommendPickMapper recommendPickMapper) {
+        this.championProcessor = championProcessor;
+        this.matchProcessor = matchProcessor;
+        this.recommendPickMapper = recommendPickMapper;
+    }
 
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
