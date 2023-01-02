@@ -5,19 +5,22 @@ import com.pickban.ggbackend.recommendpick.application.RecommendPickFacade;
 import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.MockDataSave;
 import com.pickban.ggbackend.recommendpick.dto.RecommendRequestDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/recommend")
-@RequiredArgsConstructor
 public class RecommendPickApi {
 
     private final RecommendPickFacade recommendPickFacade;
 
     private final MockDataSave mockDataSave;
+
+    public RecommendPickApi(RecommendPickFacade recommendPickFacade, MockDataSave mockDataSave) {
+        this.recommendPickFacade = recommendPickFacade;
+        this.mockDataSave = mockDataSave;
+    }
 
     @GetMapping("")
     public ResponseEntity getPick(@RequestParam String team, String line, String bans, String emBans, String picks, String emPicks) {
