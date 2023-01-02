@@ -19,6 +19,9 @@ public class MatchProcessorImpl implements MatchProcessor{
         List<ChampionResponseDto> championResponseDto = championResponseDtoList.stream()
                 .sorted((a, b) -> (int) (b.getOpScore() - a.getOpScore()))
                 .collect(Collectors.toList());
+        if (championResponseDto.size() < 3) {
+            return championResponseDto;
+        }
         return championResponseDto.subList(0,3);
     }
 
