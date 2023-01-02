@@ -6,7 +6,6 @@ import com.pickban.ggbackend.recommendpick.domain.repository.ChampionRepository;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
 import com.pickban.ggbackend.recommendpick.enummodel.ExceptionMsgEnum;
 import com.pickban.ggbackend.recommendpick.enummodel.TierEnum;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,11 +13,15 @@ import java.util.List;
 
 
 @Component
-@RequiredArgsConstructor
 public class ChampionProcessorImpl implements ChampionProcessor{
 
     private final ChampionRepository championRepository;
     private final ChampionMapper championMapper;
+
+    public ChampionProcessorImpl(ChampionRepository championRepository, ChampionMapper championMapper) {
+        this.championRepository = championRepository;
+        this.championMapper = championMapper;
+    }
 
     @Override
     public List<ChampionResponseDto> getCounter(String emLineChamp) {
