@@ -1,31 +1,23 @@
 package com.pickban.ggbackend.recommendpick.dto;
 
 import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class RecommendRequestDto {
 
-    @Builder.Default
-    private String bans = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
-    @Builder.Default
-    private String emBans = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
-    @Builder.Default
-    private String picks = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
-    @Builder.Default
-    private String emPicks = ChampValueConst.NOT_EXISTS_CHAMP_ID_VALUE;
+    private String bans;
+    private String emBans;
+    private String picks;
+    private String emPicks;
 
-    public String getDisabledChampList() {
-        return  this.bans +ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
-                +this.emBans+ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
-                +this.picks +ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
-                +this.emPicks;
+    @Builder
+    public RecommendRequestDto(String bans, String emBans, String picks, String emPicks) {
+        this.bans = bans;
+        this.emBans = emBans;
+        this.picks = picks;
+        this.emPicks = emPicks;
     }
 }
