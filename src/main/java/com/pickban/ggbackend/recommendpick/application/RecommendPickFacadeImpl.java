@@ -1,6 +1,7 @@
 package com.pickban.ggbackend.recommendpick.application;
 
 import com.pickban.ggbackend.recommendpick.application.mapper.RecommendPickMapper;
+import com.pickban.ggbackend.recommendpick.constantmodel.ChampValueConst;
 import com.pickban.ggbackend.recommendpick.domain.processor.ChampionProcessor;
 import com.pickban.ggbackend.recommendpick.domain.processor.MatchProcessor;
 import com.pickban.ggbackend.recommendpick.dto.ChampionResponseDto;
@@ -32,9 +33,8 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
 
     @Override
     public List<RecommendPickDto> getRecommend(String team, String line, RecommendRequestDto recommendRequestDto) {
-        String disableChampList = recommendRequestDto.getDisabledChampList();
         List<ChampionResponseDto> removedChampList =
-                matchProcessor.removeDisableChamp(championProcessor.getLineChampion(line), disableChampList);
+                matchProcessor.removeDisableChamp(championProcessor.getLineChampion(line), parseDtoToString(recommendRequestDto));
         List<ChampionResponseDto> sortedChampList = matchProcessor.tierSort(removedChampList);
         return recommendPickMapper.champResDtoListToRecommendPickDtoList(sortedChampList);
     }
@@ -55,6 +55,13 @@ public class RecommendPickFacadeImpl implements RecommendPickFacade{
                         .distinct()
                         .collect(Collectors.toList());
         return removedChampList;
+    }
+
+    private String parseDtoToString(RecommendRequestDto recommendRequestDto) {
+        return recommendRequestDto.getBans() + ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
+                + recommendRequestDto.getEmBans() + ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
+                + recommendRequestDto.getPicks() + ChampValueConst.UNDERSCORE_FOR_SPLIT_CHAMP
+                + recommendRequestDto.getEmPicks();
     }
 
 }
